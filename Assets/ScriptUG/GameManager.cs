@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Text = TMPro.TextMeshProUGUI;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -39,6 +41,24 @@ public class GameManager : MonoBehaviour
         if (timerText != null)
         {
             timerText.text = "Time: " + minutes + ":" + seconds;
+        }
+
+        // 偵測 HealCurrent 是否為 0
+        if (HealthController.HealCurrent <= 0)
+        {
+            // 停止遊戲
+            Time.timeScale = 0f;
+
+            // 其他遊戲邏輯ex:介面
+
+            // 按下 R 键重新開始
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                // 重設定遊戲時間
+                HealthController.HealCurrent=100;
+                Time.timeScale = 1f;
+            }
         }
     }
 

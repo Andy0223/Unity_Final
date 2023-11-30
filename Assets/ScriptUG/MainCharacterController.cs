@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class MainCharacterController : MonoBehaviour
 {
@@ -7,8 +8,10 @@ public class MainCharacterController : MonoBehaviour
     [SerializeField] private float rollDistance;
 
     private bool isGrounded=false;
+    private bool isTrap=false;
     private Rigidbody2D rb;
     private Animator animator;
+    public HealthController healthController; // 引用 HealthController
 
     void Start()
     {
@@ -22,43 +25,43 @@ public class MainCharacterController : MonoBehaviour
 
     void Update()
     {
-        // 蹬牆跳
+        // 跳
         if (Input.GetKeyDown(KeyCode.W) && (isGrounded))
         {
             Debug.LogWarning("Jumping!");
             // 使用 Rigidbody2D 的 velocity 來給予垂直速度
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            //animator.SetBool("jump", true);
+
+            //如果需要可以再設一個蹬牆跳，我現在只有設Grounded
+            // if(isWall){
+                // animator.SetBool("蹬牆跳", true);
+            // }
+            // else{
+            //     animator.SetBool("jump", true);
+            // }
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) && (!isTrap))
         {
             transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
             GetComponent<SpriteRenderer>().flipX = false; 
             animator.SetBool("run", true);
         }
-        // 左移
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A) && (!isTrap))
         {
             transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
             GetComponent<SpriteRenderer>().flipX = true; 
             animator.SetBool("run", true);
         }
+        // 翻滾迴避
+        else if(Input.GetKeyDown(KeyCode.S)){
+            Debug.LogWarning("Rollng!");
+            // 使用 Rigidbody2D 的 velocity 來給予垂直速度
+            rb.velocity = new Vector2(rb.velocity.x, -jumpForce);
+        }
         else{
             animator.SetBool("run", false);
         }
 
-/*
-        // 移動
-        float horizontalInput = Input.GetAxis("Horizontal");
-        Vector3 moveDirection = new Vector3(horizontalInput * moveSpeed * Time.deltaTime, 0f, 0f);
-        transform.Translate(moveDirection);
-*/
-
-        // 翻滾迴避
-        // if (Input.GetKeyDown(KeyCode.S))
-        // {
-        //     Roll();
-        // }
     }
 
     void Roll()
@@ -76,14 +79,26 @@ public class MainCharacterController : MonoBehaviour
             isGrounded = true;
         }
 
-        
+        // 檢查是否碰到Trap
         if (collision.gameObject.CompareTag("Trap"))
         {
+            isTrap = true;
             // 將玩家向左和向上彈開
             rb.velocity = new Vector2(-3f, 3f);
+            // 這裡減少 HealCurrent
+            Debug.Log("HealCurrent1: " + HealthController.HealCurrent+"max"+HealthController.HealMax);
+            HealthController.HealCurrent -= 10;
+             Debug.Log("HealCurrent: " + HealthController.HealCurrent+"max"+HealthController.HealMax);
+            // 啟動等待半秒的協程
+            StartCoroutine(WaitForTrapReset());
         }
     }
-
+    IEnumerator WaitForTrapReset()
+    {
+        // 等待半秒
+        yield return new WaitForSeconds(0.5f);
+        isTrap = false;
+    }
     void OnCollisionExit2D(Collision2D collision)
     {
         // 離開地面
