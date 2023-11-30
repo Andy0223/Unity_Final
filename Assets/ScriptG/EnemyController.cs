@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public float movementSpeed = 3f; // 設定移動速度
-
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,5 +17,6 @@ public class EnemyController : MonoBehaviour
     {
         // 向左移動
         transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
+        animator.SetBool("run", true);
     }
 }

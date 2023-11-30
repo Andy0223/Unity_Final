@@ -8,10 +8,12 @@ public class MainCharacterController : MonoBehaviour
 
     private bool isGrounded=false;
     private Rigidbody2D rb;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = gameObject.GetComponent<Animator>();
         if (rb == null)
         {
             Debug.LogWarning("Rigidbody2D not found on the character.");
@@ -27,13 +29,30 @@ public class MainCharacterController : MonoBehaviour
             Debug.LogWarning("Jumping!");
             // 使用 Rigidbody2D 的 velocity 來給予垂直速度
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            animator.SetBool("jump", true);
         }
-        
+        else if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
+            GetComponent<SpriteRenderer>().flipX = false; 
+            animator.SetBool("run", true);
+        }
+        // 左移
+        else if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
+            GetComponent<SpriteRenderer>().flipX = true; 
+            animator.SetBool("run", true);
+        }
+        else{
+            animator.SetBool("run", false);
+        }
+/*
         // 移動
         float horizontalInput = Input.GetAxis("Horizontal");
         Vector3 moveDirection = new Vector3(horizontalInput * moveSpeed * Time.deltaTime, 0f, 0f);
         transform.Translate(moveDirection);
-
+*/
 
         // 翻滾迴避
         // if (Input.GetKeyDown(KeyCode.S))

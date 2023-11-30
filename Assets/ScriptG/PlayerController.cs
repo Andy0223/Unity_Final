@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovementInput()
     {
+/*
         float dirx = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirx * moveSpeed, rb.velocity.y);
         // 瞬間移動到上一層或下一層地面
@@ -47,17 +48,46 @@ public class PlayerController : MonoBehaviour
         {
             TeleportToLayer(-1);
         }
+
         // 水平移動
         if (dirx != 0)
         {
-            animator.SetInteger("state", 1);
+            animator.SetBool("run", true);
+            //animator.SetInteger("state", 1);
         }
         else
         {
-            animator.SetInteger("state", 0);
+            animator.SetBool("run", false);
+            //animator.SetInteger("state", 0);
         }
+*/
+        // 右移
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
+            GetComponent<SpriteRenderer>().flipX = false; 
+            animator.SetBool("run", true);
+        }
+        // 左移
+        else if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
+            GetComponent<SpriteRenderer>().flipX = true; 
+            animator.SetBool("run", true);
+        }
+        // 瞬間移動到上一層或下一層地面
+        else if(Input.GetKeyDown(KeyCode.W)){
+            TeleportToLayer(1);
+        }
+        else if(Input.GetKey(KeyCode.S)){
+            TeleportToLayer(-1);
+        }
+        else{
+            animator.SetBool("run", false);
+        }
+        
     }
-
+/*
     void MoveHorizontally(float speed)
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -66,7 +96,7 @@ public class PlayerController : MonoBehaviour
         float horizontalMovement = horizontalInput * moveSpeed * Time.deltaTime;
         transform.Translate(new Vector2(horizontalMovement, 0f));
     }
-
+*/
     void HandleSelectionInput()
     {
         // 根據按下的數字鍵選擇對應的9-sliced sprite
