@@ -18,7 +18,6 @@ public class MainCharacterController : MonoBehaviour
         {
             Debug.LogWarning("Rigidbody2D not found on the character.");
         }
-        
     }
 
     void Update()
@@ -29,7 +28,7 @@ public class MainCharacterController : MonoBehaviour
             Debug.LogWarning("Jumping!");
             // 使用 Rigidbody2D 的 velocity 來給予垂直速度
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            animator.SetBool("jump", true);
+            //animator.SetBool("jump", true);
         }
         else if (Input.GetKey(KeyCode.D))
         {
@@ -47,6 +46,7 @@ public class MainCharacterController : MonoBehaviour
         else{
             animator.SetBool("run", false);
         }
+
 /*
         // 移動
         float horizontalInput = Input.GetAxis("Horizontal");
