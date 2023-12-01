@@ -10,6 +10,7 @@ public class GameManagerGround : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnEnemies());
+        Debug.LogWarning(ShareValues.myValue);
     }
 
     IEnumerator SpawnEnemies()

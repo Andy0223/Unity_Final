@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     void Start(){
         IsGameOver = false;
         HealthController.HealCurrent=100;
+        Debug.LogWarning(ShareValues.myValue);
     }
 
     void Update()
@@ -68,7 +69,8 @@ public class GameManager : MonoBehaviour
         //按下R重新開始
         if (IsGameOver && Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("Ground");  
         }
     }
 

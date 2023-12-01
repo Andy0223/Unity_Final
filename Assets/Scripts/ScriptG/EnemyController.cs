@@ -17,6 +17,6 @@ public class EnemyController : MonoBehaviour
     {
         // 向左移動
         transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
-        animator.SetBool("run", true);
+        // animator.SetBool("run", true);
     }
 }
