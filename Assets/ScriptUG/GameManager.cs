@@ -27,9 +27,27 @@ public class GameManager : MonoBehaviour
 
     public Text timerText;
     private float timer = 0f;
+    public bool IsGameOver;
+    [SerializeField] private GameObject LossPop;
+    [SerializeField] private GameObject WinPop;
+    [SerializeField] private GameObject house_lantern_off;
+    [SerializeField] private GameObject house_lantern_on;
+    void Start(){
+        IsGameOver = false;
+        HealthController.HealCurrent=100;
+    }
 
     void Update()
     {
+        if (IsGameOver)
+        {
+            Time.timeScale = 0f;  // 暫停遊戲
+        }
+        else
+        {
+            Time.timeScale = 1f;  // 恢復時間流逝
+            
+        }
         // 更新計時器
         timer += Time.deltaTime;
 
@@ -42,24 +60,36 @@ public class GameManager : MonoBehaviour
         {
             timerText.text = "Time: " + minutes + ":" + seconds;
         }
-
-        // 偵測 HealCurrent 是否為 0
-        if (HealthController.HealCurrent <= 0)
-        {
-            // 停止遊戲
-            Time.timeScale = 0f;
-
-            // 其他遊戲邏輯ex:介面
-
-            // 按下 R 键重新開始
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                // 重設定遊戲時間
-                HealthController.HealCurrent=100;
-                Time.timeScale = 1f;
-            }
+        //偵測血量
+        if (HealthController.HealCurrent <= 0){
+            SetGameOver();
         }
+        //重新開始
+        //按下R重新開始
+        if (IsGameOver && Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    public void SetGameOver(){
+        //ex馬力歐一樣往下掉
+
+        //遊戲結束
+        IsGameOver = true;
+        LossPop.SetActive(true);
+        
+    }
+    public void SetWin(){
+        //遊戲結束
+        IsGameOver = true;
+        WinPop.SetActive(true);
+        
+    }
+
+    public void SetlanternOn(){
+        house_lantern_off.SetActive(false);
+        house_lantern_on.SetActive(true);
     }
 
     // 增加計時器的方法

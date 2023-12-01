@@ -6,6 +6,7 @@ public class MainCharacterController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float rollDistance;
+    [SerializeField] private GameManager gameManager;
 
     private bool isGrounded=false;
     private bool isTrap=false;
@@ -92,13 +93,33 @@ public class MainCharacterController : MonoBehaviour
             // 啟動等待半秒的協程
             StartCoroutine(WaitForTrapReset());
         }
+        if (collision.gameObject.CompareTag("Treasurebox"))
+        {
+            if (gameManager != null)
+            {
+                gameManager.SetWin();
+            }
+            else
+            {
+                Debug.LogError("GameManager is not assigned to MainCharacterController.");
+            }
+        }
+        // if(collision.gameObject.CompareTag("Lantern"))
+        // {
+        //     // gameManager.SetlanternOff();
+        //     gameManager.SetlanternOn();
+        // }
+
     }
-    IEnumerator WaitForTrapReset()
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // 等待半秒
-        yield return new WaitForSeconds(0.5f);
-        isTrap = false;
+        if (other.CompareTag("Lantern") && gameManager != null)
+        {
+            gameManager.SetlanternOn();
+        }
     }
+
     void OnCollisionExit2D(Collision2D collision)
     {
         // 離開地面
@@ -106,5 +127,11 @@ public class MainCharacterController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+    IEnumerator WaitForTrapReset()
+    {
+        // 等待半秒
+        yield return new WaitForSeconds(0.5f);
+        isTrap = false;
     }
 }
