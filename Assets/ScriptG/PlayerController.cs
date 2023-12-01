@@ -36,9 +36,9 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovementInput()
     {
-/*
-        float dirx = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirx * moveSpeed, rb.velocity.y);
+        
+        //float dirx = Input.GetAxisRaw("Horizontal");
+        //rb.velocity = new Vector2(dirx * moveSpeed, rb.velocity.y);
         // 瞬間移動到上一層或下一層地面
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -50,42 +50,53 @@ public class PlayerController : MonoBehaviour
         }
 
         // 水平移動
-        if (dirx != 0)
+        if (Input.GetKey(KeyCode.D))
         {
+            GetComponent<SpriteRenderer>().flipX = false;
+            transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
             animator.SetBool("run", true);
-            //animator.SetInteger("state", 1);
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+            transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
+            animator.SetBool("run", true);
         }
         else
         {
             animator.SetBool("run", false);
-            //animator.SetInteger("state", 0);
         }
-*/
-        // 右移
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
-            GetComponent<SpriteRenderer>().flipX = false; 
-            animator.SetBool("run", true);
-        }
-        // 左移
-        else if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
-            GetComponent<SpriteRenderer>().flipX = true; 
-            animator.SetBool("run", true);
-        }
+
         // 瞬間移動到上一層或下一層地面
-        else if(Input.GetKeyDown(KeyCode.W)){
-            TeleportToLayer(1);
-        }
-        else if(Input.GetKey(KeyCode.S)){
-            TeleportToLayer(-1);
-        }
-        else{
-            animator.SetBool("run", false);
-        }
-        
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    TeleportToLayer(1);
+        //}
+        //else if (Input.GetKey(KeyCode.S))
+        //{
+        //    TeleportToLayer(-1);
+        //}
+
+        //// 右移
+        //if (Input.GetKey(KeyCode.D))
+        //{
+        //    transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
+        //    GetComponent<SpriteRenderer>().flipX = false; 
+        //    animator.SetBool("run", true);
+        //}
+        //// 左移
+        //else if (Input.GetKey(KeyCode.A))
+        //{
+        //    transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
+        //    GetComponent<SpriteRenderer>().flipX = true; 
+        //    animator.SetBool("run", true);
+        //}
+        //else
+        //{
+        //    animator.SetBool("run", false);
+        //}
+
+
     }
 /*
     void MoveHorizontally(float speed)
