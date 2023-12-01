@@ -32,14 +32,6 @@ public class MainCharacterController : MonoBehaviour
             Debug.LogWarning("Jumping!");
             // 使用 Rigidbody2D 的 velocity 來給予垂直速度
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-
-            //如果需要可以再設一個蹬牆跳，我現在只有設Grounded
-            // if(isWall){
-                // animator.SetBool("蹬牆跳", true);
-            // }
-            // else{
-            //     animator.SetBool("jump", true);
-            // }
         }
         else if (Input.GetKey(KeyCode.D) && (!isTrap))
         {
@@ -83,6 +75,7 @@ public class MainCharacterController : MonoBehaviour
         // 檢查是否碰到Trap
         if (collision.gameObject.CompareTag("Trap"))
         {
+            animator.SetTrigger("hurt");
             isTrap = true;
             // 將玩家向左和向上彈開
             rb.velocity = new Vector2(-3f, 3f);
