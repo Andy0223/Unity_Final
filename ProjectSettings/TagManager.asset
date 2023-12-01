@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Wall
   - Treasurebox
+  - Lantern
   layers:
   - Default
   - TransparentFX
