@@ -85,7 +85,6 @@ public class MainCharacterController : MonoBehaviour
              Debug.Log("HealCurrent: " + HealthController.HealCurrent+"max"+HealthController.HealMax);
             // 啟動等待半秒的協程
             StartCoroutine(WaitForTrapReset());
-            ShareValues.myValue+=10;
         }
         if (collision.gameObject.CompareTag("Treasurebox"))
         {
