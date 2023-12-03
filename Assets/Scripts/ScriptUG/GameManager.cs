@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
     void Start(){
         IsGameOver = false;
         HealthController.HealCurrent=100;
-        Debug.LogWarning(ShareValues.myValue);
     }
 
     void Update()
