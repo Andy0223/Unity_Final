@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,16 +15,32 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer ancestor4;
     public SpriteRenderer ancestor5;
     public SpriteRenderer ancestor6;
+
+    public Text ancestor1_remainCounts;
+    public Text ancestor2_remainCounts;
+    public Text ancestor3_remainCounts;
+    public Text ancestor4_remainCounts;
+    public Text ancestor5_remainCounts;
+    public Text ancestor6_remainCounts;
+    private List<Text> ancestors_remainCounts;
+
     private List<SpriteRenderer> spriteRenderers;
     private Animator animator;
     [SerializeField] private GameObject SettingPop;
 
     void Start()
     {
+        ancestor1_remainCounts.enabled = false;
+        ancestor2_remainCounts.enabled = false;
+        ancestor3_remainCounts.enabled = false;
+        ancestor4_remainCounts.enabled = false;
+        ancestor5_remainCounts.enabled = false;
+        ancestor6_remainCounts.enabled = false;
         rb = GetComponent<Rigidbody2D>();
         // 添加 SelectSprite 腳本並設置參考
         selectSprite = gameObject.AddComponent<SelectSprite>();
         spriteRenderers = new List<SpriteRenderer> { ancestor1, ancestor2, ancestor3, ancestor4, ancestor5, ancestor6 };
+        ancestors_remainCounts = new List<Text> { ancestor1_remainCounts, ancestor2_remainCounts, ancestor3_remainCounts, ancestor4_remainCounts, ancestor5_remainCounts, ancestor6_remainCounts };
         animator = gameObject.GetComponent<Animator>();
         Debug.LogWarning(ShareValues.myValue);
         SettingPop.SetActive(true);
@@ -31,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        UpdateAncestorRemainCounts();
         HandleMovementInput();
         HandleSelectionInput();
         HandleSpawnInput();
@@ -68,78 +86,39 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("run", false);
         }
-
-        // 瞬間移動到上一層或下一層地面
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    TeleportToLayer(1);
-        //}
-        //else if (Input.GetKey(KeyCode.S))
-        //{
-        //    TeleportToLayer(-1);
-        //}
-
-        //// 右移
-        //if (Input.GetKey(KeyCode.D))
-        //{
-        //    transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
-        //    GetComponent<SpriteRenderer>().flipX = false; 
-        //    animator.SetBool("run", true);
-        //}
-        //// 左移
-        //else if (Input.GetKey(KeyCode.A))
-        //{
-        //    transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
-        //    GetComponent<SpriteRenderer>().flipX = true; 
-        //    animator.SetBool("run", true);
-        //}
-        //else
-        //{
-        //    animator.SetBool("run", false);
-        //}
-
-
     }
-/*
-    void MoveHorizontally(float speed)
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
 
-        // 左右移動
-        float horizontalMovement = horizontalInput * moveSpeed * Time.deltaTime;
-        transform.Translate(new Vector2(horizontalMovement, 0f));
-    }
-*/
     void HandleSelectionInput()
     {
         // 根據按下的數字鍵選擇對應的9-sliced sprite
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            selectSprite.SelectAncestor(ancestor1, spriteRenderers);
+            selectSprite.SelectAncestor(ancestor1, spriteRenderers, ancestors_remainCounts);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            selectSprite.SelectAncestor(ancestor2, spriteRenderers);
+            selectSprite.SelectAncestor(ancestor2, spriteRenderers, ancestors_remainCounts);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            selectSprite.SelectAncestor(ancestor3, spriteRenderers);
+            selectSprite.SelectAncestor(ancestor3, spriteRenderers, ancestors_remainCounts);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            selectSprite.SelectAncestor(ancestor4, spriteRenderers);
+            selectSprite.SelectAncestor(ancestor4, spriteRenderers, ancestors_remainCounts);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            selectSprite.SelectAncestor(ancestor5, spriteRenderers);
+            selectSprite.SelectAncestor(ancestor5, spriteRenderers, ancestors_remainCounts);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            selectSprite.SelectAncestor(ancestor6, spriteRenderers);
+            selectSprite.SelectAncestor(ancestor6, spriteRenderers, ancestors_remainCounts);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             selectSprite.ClearAllColors(spriteRenderers);
+            selectSprite.ClearAllRemainText(ancestors_remainCounts);
         }
     }
 
@@ -150,6 +129,17 @@ public class PlayerController : MonoBehaviour
         {
             SpawnPrefab();
         }
+    }
+
+    void UpdateAncestorRemainCounts()
+    {
+        // Update UI Text (Legacy) components directly
+        ancestor1_remainCounts.text = "X" + ShareValues.ancestor1_counts.ToString();
+        ancestor2_remainCounts.text = "X" + ShareValues.ancestor2_counts.ToString();
+        ancestor3_remainCounts.text = "X" + ShareValues.ancestor3_counts.ToString();
+        ancestor4_remainCounts.text = "X" + ShareValues.ancestor4_counts.ToString();
+        ancestor5_remainCounts.text = "X" + ShareValues.ancestor5_counts.ToString();
+        ancestor6_remainCounts.text = "X" + ShareValues.ancestor6_counts.ToString();
     }
 
     void SpawnPrefab()
@@ -163,6 +153,31 @@ public class PlayerController : MonoBehaviour
             {
                 // 根據現在的位置生成Prefab，你可以根據需要更改位置
                 Instantiate(prefab, transform.position, Quaternion.identity);
+                // 減少對應的 ShareValues
+                switch (selectSprite.selectedAncestorName)
+                {
+                    case "ancestor 1":
+                        ShareValues.ancestor1_counts--;
+                        break;
+                    case "ancestor 2":
+                        ShareValues.ancestor2_counts--;
+                        break;
+                    case "ancestor 3":
+                        ShareValues.ancestor3_counts--;
+                        break;
+                    case "ancestor 4":
+                        ShareValues.ancestor4_counts--;
+                        break;
+                    case "ancestor 5":
+                        ShareValues.ancestor5_counts--;
+                        break;
+                    case "ancestor 6":
+                        ShareValues.ancestor6_counts--;
+                        break;
+                    default:
+                        Debug.LogError("未知的Prefab名字：" + selectSprite.selectedAncestorName);
+                        break;
+                }
             }
             else
             {
