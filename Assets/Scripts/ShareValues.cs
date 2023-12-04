@@ -15,4 +15,6 @@ public class ShareValues : MonoBehaviour
     public static int UGSceneEntryCounts = 0;
 
     public static int UGSceneTempPosition;
+
+    public static int GameLevel = 0;
 }
