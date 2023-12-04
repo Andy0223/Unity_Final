@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
 
     private List<SpriteRenderer> spriteRenderers;
     private Animator animator;
-    [SerializeField] private GameObject SettingPop;
 
     void Start()
     {
