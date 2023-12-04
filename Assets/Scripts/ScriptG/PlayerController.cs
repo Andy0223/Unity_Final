@@ -42,8 +42,6 @@ public class PlayerController : MonoBehaviour
         spriteRenderers = new List<SpriteRenderer> { ancestor1, ancestor2, ancestor3, ancestor4, ancestor5, ancestor6 };
         ancestors_remainCounts = new List<Text> { ancestor1_remainCounts, ancestor2_remainCounts, ancestor3_remainCounts, ancestor4_remainCounts, ancestor5_remainCounts, ancestor6_remainCounts };
         animator = gameObject.GetComponent<Animator>();
-        Debug.LogWarning(ShareValues.myValue);
-        SettingPop.SetActive(true);
     }
 
     void Update()
