@@ -53,19 +53,6 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovementInput()
     {
-        
-        //float dirx = Input.GetAxisRaw("Horizontal");
-        //rb.velocity = new Vector2(dirx * moveSpeed, rb.velocity.y);
-        // 瞬間移動到上一層或下一層地面
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            TeleportToLayer(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            TeleportToLayer(-1);
-        }
-
         // 水平移動
         if (Input.GetKey(KeyCode.D))
         {
@@ -83,7 +70,18 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("run", false);
         }
+
+        // 瞬間移動到上一層或下一層地面（使用GetKeyDown進行瞬間觸發）
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            TeleportToLayer(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            TeleportToLayer(-1);
+        }
     }
+
 
     void HandleSelectionInput()
     {
@@ -131,12 +129,12 @@ public class PlayerController : MonoBehaviour
     void UpdateAncestorRemainCounts()
     {
         // Update UI Text (Legacy) components directly
-        ancestor1_remainCounts.text = "X" + ShareValues.ancestor1_counts.ToString();
-        ancestor2_remainCounts.text = "X" + ShareValues.ancestor2_counts.ToString();
-        ancestor3_remainCounts.text = "X" + ShareValues.ancestor3_counts.ToString();
-        ancestor4_remainCounts.text = "X" + ShareValues.ancestor4_counts.ToString();
-        ancestor5_remainCounts.text = "X" + ShareValues.ancestor5_counts.ToString();
-        ancestor6_remainCounts.text = "X" + ShareValues.ancestor6_counts.ToString();
+        ancestor1_remainCounts.text = "X" + ShareValues.ancestor1_counts.ToString("D2");
+        ancestor2_remainCounts.text = "X" + ShareValues.ancestor2_counts.ToString("D2");
+        ancestor3_remainCounts.text = "X" + ShareValues.ancestor3_counts.ToString("D2");
+        ancestor4_remainCounts.text = "X" + ShareValues.ancestor4_counts.ToString("D2");
+        ancestor5_remainCounts.text = "X" + ShareValues.ancestor5_counts.ToString("D2");
+        ancestor6_remainCounts.text = "X" + ShareValues.ancestor6_counts.ToString("D2");
     }
 
     void SpawnPrefab()
@@ -148,28 +146,80 @@ public class PlayerController : MonoBehaviour
             GameObject prefab = Resources.Load<GameObject>(selectSprite.selectedAncestorName);
             if (prefab != null)
             {
-                // 根據現在的位置生成Prefab，你可以根據需要更改位置
-                Instantiate(prefab, transform.position, Quaternion.identity);
                 // 減少對應的 ShareValues
                 switch (selectSprite.selectedAncestorName)
                 {
                     case "ancestor 1":
-                        ShareValues.ancestor1_counts--;
+                        if (ShareValues.ancestor1_counts != 0)
+                        {
+                            // 根據現在的位置生成Prefab，你可以根據需要更改位置
+                            Instantiate(prefab, transform.position, Quaternion.identity);
+                            ShareValues.ancestor1_counts--;
+                        }
+                        else
+                        {
+                            Debug.Log("No more ancestor 1");
+                        }
                         break;
                     case "ancestor 2":
-                        ShareValues.ancestor2_counts--;
+                        if (ShareValues.ancestor2_counts != 0)
+                        {
+                            // 根據現在的位置生成Prefab，你可以根據需要更改位置
+                            Instantiate(prefab, transform.position, Quaternion.identity);
+                            ShareValues.ancestor2_counts--;
+                        }
+                        else
+                        {
+                            Debug.Log("No more ancestor 2");
+                        }
                         break;
                     case "ancestor 3":
-                        ShareValues.ancestor3_counts--;
+                        if (ShareValues.ancestor3_counts != 0)
+                        {
+                            // 根據現在的位置生成Prefab，你可以根據需要更改位置
+                            Instantiate(prefab, transform.position, Quaternion.identity);
+                            ShareValues.ancestor3_counts--;
+                        }
+                        else
+                        {
+                            Debug.Log("No more ancestor 3");
+                        }
                         break;
                     case "ancestor 4":
-                        ShareValues.ancestor4_counts--;
+                        if (ShareValues.ancestor4_counts != 0)
+                        {
+                            // 根據現在的位置生成Prefab，你可以根據需要更改位置
+                            Instantiate(prefab, transform.position, Quaternion.identity);
+                            ShareValues.ancestor4_counts--;
+                        }
+                        else
+                        {
+                            Debug.Log("No more ancestor 4");
+                        }
                         break;
                     case "ancestor 5":
-                        ShareValues.ancestor5_counts--;
+                        if (ShareValues.ancestor5_counts != 0)
+                        {
+                            // 根據現在的位置生成Prefab，你可以根據需要更改位置
+                            Instantiate(prefab, transform.position, Quaternion.identity);
+                            ShareValues.ancestor5_counts--;
+                        }
+                        else
+                        {
+                            Debug.Log("No more ancestor 5");
+                        }
                         break;
                     case "ancestor 6":
-                        ShareValues.ancestor6_counts--;
+                        if (ShareValues.ancestor6_counts != 0)
+                        {
+                            // 根據現在的位置生成Prefab，你可以根據需要更改位置
+                            Instantiate(prefab, transform.position, Quaternion.identity);
+                            ShareValues.ancestor6_counts--;
+                        }
+                        else
+                        {
+                            Debug.Log("No more ancestor 6");
+                        }
                         break;
                     default:
                         Debug.LogError("未知的Prefab名字：" + selectSprite.selectedAncestorName);
