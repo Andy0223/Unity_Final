@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer ancestor6;
     private List<SpriteRenderer> spriteRenderers;
     private Animator animator;
+    [SerializeField] private GameObject SettingPop;
 
     void Start()
     {
@@ -24,7 +25,8 @@ public class PlayerController : MonoBehaviour
         selectSprite = gameObject.AddComponent<SelectSprite>();
         spriteRenderers = new List<SpriteRenderer> { ancestor1, ancestor2, ancestor3, ancestor4, ancestor5, ancestor6 };
         animator = gameObject.GetComponent<Animator>();
-
+        Debug.LogWarning(ShareValues.myValue);
+        SettingPop.SetActive(true);
     }
 
     void Update()
@@ -222,4 +224,5 @@ public class PlayerController : MonoBehaviour
 
         return 0; // 如果解析失敗，預設在第一層地面
     }
+
 }
