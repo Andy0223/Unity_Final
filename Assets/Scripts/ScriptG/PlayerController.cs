@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private List<SpriteRenderer> spriteRenderers;
     private Animator animator;
+    [SerializeField] private GameObject SettingPop;
 
     void Start()
     {
@@ -236,4 +237,5 @@ public class PlayerController : MonoBehaviour
 
         return 0; // 如果解析失敗，預設在第一層地面
     }
+
 }
