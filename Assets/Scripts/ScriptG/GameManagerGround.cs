@@ -38,6 +38,9 @@ public class GameManagerGround : MonoBehaviour
         // 更新倒數計時器
         timeRemaining -= Time.deltaTime;
 
+        // 確保時間不為負數
+        timeRemaining = Mathf.Max(timeRemaining, 0f);
+
         // 如果時間到，重設計時器
         if (timeRemaining <= 0f)
         {

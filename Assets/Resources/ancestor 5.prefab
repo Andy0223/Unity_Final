@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6744761259914015304}
   - component: {fileID: 1702034648464234312}
   - component: {fileID: 8110274846003029766}
+  - component: {fileID: -5119122533120579102}
   m_Layer: 0
   m_Name: ancestor 5
-  m_TagString: Untagged
+  m_TagString: Ancestor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,3 +230,18 @@ PolygonCollider2D:
       - {x: -0.26, y: -0.59999996}
       - {x: -0.049999997, y: -0.51}
   m_UseDelaunayMesh: 0
+--- !u!114 &-5119122533120579102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576794479041899959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88af7370f21245bebedf46a893b8a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 3
+  maxRightXPosition: 0
+  maxLeftXPosition: 0

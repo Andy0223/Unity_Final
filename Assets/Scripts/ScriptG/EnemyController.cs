@@ -8,21 +8,31 @@ public class EnemyController : MonoBehaviour
     private int collisionCount = 0;
     public int maxCollisionCount = 3;
     private Rigidbody2D rb;
+    public float stopXPosition;
 
     void Start()
     {
+        string enemyBaseName = "Enemy_base 1";
+        GameObject selectedEnemyBase = GameObject.Find(enemyBaseName);
+        stopXPosition = selectedEnemyBase.transform.position.x;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        // 如果 Enemy 的 x 位置大於特定值，就停止向右的移動
+        if (transform.position.x > stopXPosition)
+        {
+            // 停止施加的任何力或其他移動
+            rb.velocity = Vector2.zero;
+        }
         transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Ancestor"))
         {
             Debug.Log("Collision with: " + collision.gameObject.name);
             HandleCollision();
@@ -51,7 +61,7 @@ public class EnemyController : MonoBehaviour
         Vector2 initialPosition = transform.position;
 
         // 施加一个向上和向右的力，以模拟拋物線彈開
-        rb.AddForce(new Vector2(10f, 5f), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(7f, 5f), ForceMode2D.Impulse);
 
         // 等待一段時間，你可以根据需要调整这个时间
         yield return new WaitForSeconds(1f);

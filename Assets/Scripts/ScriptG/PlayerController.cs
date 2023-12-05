@@ -56,22 +56,22 @@ public class PlayerController : MonoBehaviour
     void HandleMovementInput()
     {
         // 水平移動
-        if (Input.GetKey(KeyCode.D))
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-            transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
-            animator.SetBool("run", true);
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-            transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
-            animator.SetBool("run", true);
-        }
-        else
-        {
-            animator.SetBool("run", false);
-        }
+        //if (Input.GetKey(KeyCode.D))
+        //{
+        //    GetComponent<SpriteRenderer>().flipX = false;
+        //    transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
+        //    animator.SetBool("run", true);
+        //}
+        //else if (Input.GetKey(KeyCode.A))
+        //{
+        //    GetComponent<SpriteRenderer>().flipX = true;
+        //    transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
+        //    animator.SetBool("run", true);
+        //}
+        //else
+        //{
+        //    animator.SetBool("run", false);
+        //}
 
         // 瞬間移動到上一層或下一層地面（使用GetKeyDown進行瞬間觸發）
         if (Input.GetKeyDown(KeyCode.W) && !(gameManagerGround.isStop))
@@ -141,6 +141,7 @@ public class PlayerController : MonoBehaviour
 
     void SpawnPrefab()
     {
+        Vector3 ancestorSpawnPosition = new Vector3(transform.position.x + 10f, transform.position.y, transform.position.z);
         // 檢查Prefab名字是否存在
         if (!string.IsNullOrEmpty(selectSprite.selectedAncestorName))
         {
@@ -155,7 +156,7 @@ public class PlayerController : MonoBehaviour
                         if (ShareValues.ancestor1_counts != 0)
                         {
                             // 根據現在的位置生成Prefab，你可以根據需要更改位置
-                            Instantiate(prefab, transform.position, Quaternion.identity);
+                            Instantiate(prefab, ancestorSpawnPosition, Quaternion.identity);
                             ShareValues.ancestor1_counts--;
                         }
                         else
@@ -167,7 +168,7 @@ public class PlayerController : MonoBehaviour
                         if (ShareValues.ancestor2_counts != 0)
                         {
                             // 根據現在的位置生成Prefab，你可以根據需要更改位置
-                            Instantiate(prefab, transform.position, Quaternion.identity);
+                            Instantiate(prefab, ancestorSpawnPosition, Quaternion.identity);
                             ShareValues.ancestor2_counts--;
                         }
                         else
@@ -179,7 +180,7 @@ public class PlayerController : MonoBehaviour
                         if (ShareValues.ancestor3_counts != 0)
                         {
                             // 根據現在的位置生成Prefab，你可以根據需要更改位置
-                            Instantiate(prefab, transform.position, Quaternion.identity);
+                            Instantiate(prefab, ancestorSpawnPosition, Quaternion.identity);
                             ShareValues.ancestor3_counts--;
                         }
                         else
@@ -191,7 +192,7 @@ public class PlayerController : MonoBehaviour
                         if (ShareValues.ancestor4_counts != 0)
                         {
                             // 根據現在的位置生成Prefab，你可以根據需要更改位置
-                            Instantiate(prefab, transform.position, Quaternion.identity);
+                            Instantiate(prefab, ancestorSpawnPosition, Quaternion.identity);
                             ShareValues.ancestor4_counts--;
                         }
                         else
@@ -203,7 +204,7 @@ public class PlayerController : MonoBehaviour
                         if (ShareValues.ancestor5_counts != 0)
                         {
                             // 根據現在的位置生成Prefab，你可以根據需要更改位置
-                            Instantiate(prefab, transform.position, Quaternion.identity);
+                            Instantiate(prefab, ancestorSpawnPosition, Quaternion.identity);
                             ShareValues.ancestor5_counts--;
                         }
                         else
@@ -215,7 +216,7 @@ public class PlayerController : MonoBehaviour
                         if (ShareValues.ancestor6_counts != 0)
                         {
                             // 根據現在的位置生成Prefab，你可以根據需要更改位置
-                            Instantiate(prefab, transform.position, Quaternion.identity);
+                            Instantiate(prefab, ancestorSpawnPosition, Quaternion.identity);
                             ShareValues.ancestor6_counts--;
                         }
                         else

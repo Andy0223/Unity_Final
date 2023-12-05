@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1663775402347943873}
   - component: {fileID: 2258345148204220910}
   - component: {fileID: 7569075402396804469}
+  - component: {fileID: -6220265009762547998}
   m_Layer: 0
   m_Name: ancestor 2
-  m_TagString: Untagged
+  m_TagString: Ancestor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.22664459, y: -0.057978876, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -308,3 +309,18 @@ PolygonCollider2D:
       - {x: -1.04, y: 0.195}
       - {x: -1.05, y: 0.205}
   m_UseDelaunayMesh: 0
+--- !u!114 &-6220265009762547998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5531772941418637726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88af7370f21245bebedf46a893b8a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 3
+  maxRightXPosition: 0
+  maxLeftXPosition: 0
