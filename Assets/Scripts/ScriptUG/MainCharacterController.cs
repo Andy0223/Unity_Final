@@ -101,23 +101,6 @@ public class MainCharacterController : MonoBehaviour
 
     }
 
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.CompareTag("Lantern"))
-    //     {
-    //         // 獲取目前的燈籠索引
-    //         int lanternIndex = System.Array.IndexOf(lanternManager.lanterns, other.gameObject)+1;
-    //         Debug.LogError(lanternIndex);
-
-    //         // 如果找到燈籠，並且該燈籠的索引小於總燈籠數
-    //         if (lanternIndex != -1 && lanternIndex < lanternManager.lanterns.Length)
-    //         {
-    //             // 通過 LanternManager 打開該索引以及之前的所有燈籠
-    //             lanternManager.TurnOnLantern(lanternIndex);
-    //         }
-    //     }
-    // }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Lantern"))
