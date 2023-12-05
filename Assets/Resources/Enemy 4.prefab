@@ -113,7 +113,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!60 &-6710719084007592077
 PolygonCollider2D:
@@ -208,6 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 2
   maxCollisionCount: 3
+  stopXPosition: 0
 --- !u!95 &4730805859649520118
 Animator:
   serializedVersion: 5

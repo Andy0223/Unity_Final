@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Treasurebox
   - Lantern
+  - Ancestor
   layers:
   - Default
   - TransparentFX
