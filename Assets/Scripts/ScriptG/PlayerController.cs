@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private List<SpriteRenderer> spriteRenderers;
     private Animator animator;
 
+    [SerializeField] private GameManagerGround gameManagerGround;
+
     void Start()
     {
         ancestor1_remainCounts.enabled = false;
@@ -72,11 +74,11 @@ public class PlayerController : MonoBehaviour
         }
 
         // 瞬間移動到上一層或下一層地面（使用GetKeyDown進行瞬間觸發）
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && !(gameManagerGround.isStop))
         {
             TeleportToLayer(1);
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.S) && !(gameManagerGround.isStop))
         {
             TeleportToLayer(-1);
         }
