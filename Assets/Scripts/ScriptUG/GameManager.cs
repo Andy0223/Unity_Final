@@ -26,12 +26,15 @@ public class GameManager : MonoBehaviour
     }
 
     public Text timerText;
+    public Text healthText;
     private float timer = 0f;
     public bool IsGameOver;
     [SerializeField] private GameObject LossPop;
     [SerializeField] private GameObject WinPop;
     [SerializeField] private GameObject house_lantern_off;
     [SerializeField] private GameObject house_lantern_on;
+    [SerializeField] private float timeForHealth;
+    public HealthController healthController; // 引用 HealthController
     void Start(){
         IsGameOver = false;
         HealthController.HealCurrent=100;
@@ -50,6 +53,7 @@ public class GameManager : MonoBehaviour
         }
         // 更新計時器
         timer += Time.deltaTime;
+        HealthController.HealCurrent -= Time.deltaTime/timeForHealth;
 
         // 將時間格式化為分:秒
         string minutes = Mathf.Floor(timer / 60).ToString("00");
@@ -71,6 +75,7 @@ public class GameManager : MonoBehaviour
             // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             SceneManager.LoadScene("Ground");  
         }
+
     }
 
     public void SetGameOver(){
@@ -93,10 +98,11 @@ public class GameManager : MonoBehaviour
         house_lantern_on.SetActive(true);
     }
 
-    // 增加計時器的方法
-    public void IncreaseTime(float amount)
-    {
-        timer += amount;
-    }
+    // // 增加計時器的方法
+    // public void IncreaseTime(float amount)
+    // {
+    //     timer += amount;
+    //     HealthController.HealCurrent -= timeForHealth;
+    // }
 
 }

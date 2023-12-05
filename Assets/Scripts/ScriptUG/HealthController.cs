@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+// using Text = TMPro.TextMeshProUGUI;
 
 public class HealthController : MonoBehaviour
 {
-    // public Text healthText;
-    public static int HealCurrent=100;
-    public static int HealMax=100;
+    public static double HealCurrent=100;
+    public static double HealMax=100;
     private Image healthBar;
+    
+    // public Text healthText;
 
     // Start is called before the first frame update
     void Start()

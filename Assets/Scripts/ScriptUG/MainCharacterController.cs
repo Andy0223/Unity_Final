@@ -13,6 +13,7 @@ public class MainCharacterController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     public HealthController healthController; // 引用 HealthController
+    public LanternManager lanternManager;
 
     void Start()
     {
@@ -82,7 +83,7 @@ public class MainCharacterController : MonoBehaviour
             // 這裡減少 HealCurrent
             Debug.Log("HealCurrent1: " + HealthController.HealCurrent+"max"+HealthController.HealMax);
             HealthController.HealCurrent -= 10;
-             Debug.Log("HealCurrent: " + HealthController.HealCurrent+"max"+HealthController.HealMax);
+            Debug.Log("HealCurrent: " + HealthController.HealCurrent+"max"+HealthController.HealMax);
             // 啟動等待半秒的協程
             StartCoroutine(WaitForTrapReset());
         }
@@ -97,20 +98,55 @@ public class MainCharacterController : MonoBehaviour
                 Debug.LogError("GameManager is not assigned to MainCharacterController.");
             }
         }
-        // if(collision.gameObject.CompareTag("Lantern"))
-        // {
-        //     // gameManager.SetlanternOff();
-        //     gameManager.SetlanternOn();
-        // }
 
     }
 
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("Lantern"))
+    //     {
+    //         // 獲取目前的燈籠索引
+    //         int lanternIndex = System.Array.IndexOf(lanternManager.lanterns, other.gameObject)+1;
+    //         Debug.LogError(lanternIndex);
+
+    //         // 如果找到燈籠，並且該燈籠的索引小於總燈籠數
+    //         if (lanternIndex != -1 && lanternIndex < lanternManager.lanterns.Length)
+    //         {
+    //             // 通過 LanternManager 打開該索引以及之前的所有燈籠
+    //             lanternManager.TurnOnLantern(lanternIndex);
+    //         }
+    //     }
+    // }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Lantern") && gameManager != null)
+        if (other.CompareTag("Lantern"))
         {
-            gameManager.SetlanternOn();
+            // 獲取目前的燈籠名字
+            string lanternName = other.gameObject.name;
+
+            // 在燈籠名字後面加上 'on' 以及最末數字
+            string newLanternName = "on" + GetLastDigit(lanternName);
+            lanternManager.TurnOnLantern(newLanternName);
         }
+    }
+    // 取得字串的最末數字
+    private string GetLastDigit(string input)
+    {
+        // 這個方法會將字串中的最末數字提取出來
+        string result = string.Empty;
+        for (int i = input.Length - 1; i >= 0; i--)
+        {
+            if (char.IsDigit(input[i]))
+            {
+                result = input[i] + result;
+            }
+            else
+            {
+                break;
+            }
+        }
+        return result;
     }
 
     void OnCollisionExit2D(Collision2D collision)
