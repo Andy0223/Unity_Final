@@ -15,15 +15,17 @@ public class GameManagerGround : MonoBehaviour
     private float totalSeconds;
     private float timeRemaining;
     private int currentGmaeLevel;
-
+    public bool isStop = false;
     public Text timerText;
-
+    
     void Start()
     {
         totalSeconds = initialMinutes * 60 + initialSeconds; // 将初始时间转换为总秒数
         timeRemaining = totalSeconds;
         currentGmaeLevel = ShareValues.GameLevel;
         StartCoroutine(SpawnEnemies());
+        isStop = false;
+
     }
 
     void Update()
@@ -43,6 +45,15 @@ public class GameManagerGround : MonoBehaviour
             PauseGame();
             // 不再重設計時器，等待玩家决定是否进入下一关
             // timeRemaining = spawnInterval;
+        }
+        
+        if (isStop)
+        {
+            Time.timeScale = 0f;  // 暫停遊戲
+        }
+        else
+        {
+            Time.timeScale = 1f;  // 恢復時間流逝
         }
 
         // 更新UI上的计时器显示
@@ -103,19 +114,22 @@ public class GameManagerGround : MonoBehaviour
         // 将时间格式化为分和秒，并更新UI文本
         int minutes = Mathf.FloorToInt(timeRemaining / 60);
         int seconds = Mathf.FloorToInt(timeRemaining % 60);
-        timerText.text = string.Format("Timer: {0:00}:{1:00}", minutes, seconds);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    void PauseGame()
+    public void PauseGame()
     {
         StopCoroutine(SpawnEnemies());
-        Time.timeScale = 0f;  // 设置时间流逝速度为0，即暂停
+        isStop = true;
+        // Time.timeScale = 0f;  // 设置时间流逝速度为0，即暂停
         Debug.Log("Game Paused");
     }
 
-    //void ResumeGame()
-    //{
-    //    Time.timeScale = 1f;  // 恢复正常的时间流逝速度
-    //    Debug.Log("Game Resumed");
-    //}
+    public void ResumeGame()
+    {
+        isStop = false;
+        // Time.timeScale = 1f;  // 恢复正常的时间流逝速度
+        Debug.Log("Game Resumed");
+    }
+
 }
