@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (IsGameOver)
+        if (IsGameOver || isStop)
         {
             Time.timeScale = 0f;  // 暫停遊戲
         }
@@ -53,14 +53,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1f;  // 恢復時間流逝   
         }
-        if (isStop)
-        {
-            Time.timeScale = 0f;  // 暫停遊戲
-        }
-        else
-        {
-            Time.timeScale = 1f;  // 恢復時間流逝
-        }
+
 
         // 更新計時器
         timer += Time.deltaTime;
