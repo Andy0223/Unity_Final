@@ -35,9 +35,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject house_lantern_on;
     [SerializeField] private float timeForHealth;
     public HealthController healthController; // 引用 HealthController
+    public bool isStop = false;
+
     void Start(){
         IsGameOver = false;
         HealthController.HealCurrent=100;
+        isStop = false;
     }
 
     void Update()
@@ -48,9 +51,17 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 1f;  // 恢復時間流逝
-            
+            Time.timeScale = 1f;  // 恢復時間流逝   
         }
+        if (isStop)
+        {
+            Time.timeScale = 0f;  // 暫停遊戲
+        }
+        else
+        {
+            Time.timeScale = 1f;  // 恢復時間流逝
+        }
+
         // 更新計時器
         timer += Time.deltaTime;
         HealthController.HealCurrent -= Time.deltaTime/timeForHealth;
@@ -104,5 +115,18 @@ public class GameManager : MonoBehaviour
     //     timer += amount;
     //     HealthController.HealCurrent -= timeForHealth;
     // }
+    public void PauseGame()
+    {
+        //StopCoroutine(SpawnEnemies());
+        isStop = true;
+        // Time.timeScale = 0f;  // 设置时间流逝速度为0，即暂停
+        Debug.Log("Game Paused");
+    }
 
+    public void ResumeGame()
+    {
+        isStop = false;
+        // Time.timeScale = 1f;  // 恢复正常的时间流逝速度
+        Debug.Log("Game Resumed");
+    }
 }
