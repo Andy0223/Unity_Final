@@ -6,7 +6,6 @@ public class EnemyController : MonoBehaviour
     public float movementSpeed = 3f;
     private Animator animator;
     private int collisionCount = 0;
-    public int maxCollisionCount = 3;
     private Rigidbody2D rb;
     public float stopXPosition;
 
@@ -41,7 +40,7 @@ public class EnemyController : MonoBehaviour
 
     private void HandleCollision()
     {
-        if (collisionCount >= maxCollisionCount)
+        if (collisionCount >= ShareValues.EnemyMaxCollisionCount)
         {
             Destroy(gameObject);
         }
