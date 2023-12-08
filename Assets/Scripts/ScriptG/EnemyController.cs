@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
 
     private void HandleCollision()
     {
-        if (collisionCount >= ShareValues.EnemyMaxCollisionCount)
+        if (collisionCount >= ShareValues.SingleEnemyCollisionCount)
         {
             Destroy(gameObject);
         }
