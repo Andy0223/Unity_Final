@@ -10,6 +10,7 @@ TagManager:
   - Treasurebox
   - Lantern
   - Ancestor
+  - Enemy
   layers:
   - Default
   - TransparentFX
