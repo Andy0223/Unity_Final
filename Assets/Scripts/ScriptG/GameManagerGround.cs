@@ -37,12 +37,12 @@ public class GameManagerGround : MonoBehaviour
         }
         if (ShareValues.GameLevel - currentGameLevel == 1)
         {
-            ShareValues.ancestor1_counts += 2;
-            ShareValues.ancestor2_counts += 2;
-            ShareValues.ancestor3_counts += 2;
-            ShareValues.ancestor4_counts += 2;
-            ShareValues.ancestor5_counts += 2;
-            ShareValues.ancestor6_counts += 2;
+            //ShareValues.ancestor1_counts += 2;
+            //ShareValues.ancestor2_counts += 2;
+            //ShareValues.ancestor3_counts += 2;
+            //ShareValues.ancestor4_counts += 2;
+            //ShareValues.ancestor5_counts += 2;
+            //ShareValues.ancestor6_counts += 2;
             EnemyCounts += 10;
             currentGameLevel = ShareValues.GameLevel;
             StartCoroutine(SpawnEnemies());
