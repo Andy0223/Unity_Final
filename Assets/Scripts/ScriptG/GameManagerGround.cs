@@ -14,7 +14,7 @@ public class GameManagerGround : MonoBehaviour
     private int spawnEnemyCounts = 0;
     private float totalSeconds;
     private float timeRemaining;
-    private int currentGmaeLevel;
+    private int currentGameLevel;
     public bool isStop = false;
     public Text timerText;
     
@@ -22,7 +22,7 @@ public class GameManagerGround : MonoBehaviour
     {
         totalSeconds = initialMinutes * 60 + initialSeconds; // 将初始时间转换为总秒数
         timeRemaining = totalSeconds;
-        currentGmaeLevel = ShareValues.GameLevel;
+        currentGameLevel = ShareValues.GameLevel;
         StartCoroutine(SpawnEnemies());
         isStop = false;
 
@@ -30,11 +30,25 @@ public class GameManagerGround : MonoBehaviour
 
     void Update()
     {
-        if (ShareValues.GameLevel - currentGmaeLevel == 1)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            EnemyCounts += 10;
-            currentGmaeLevel = ShareValues.GameLevel;
+            ShareValues.GameLevel += 1;
+            ResumeGame();
         }
+        if (ShareValues.GameLevel - currentGameLevel == 1)
+        {
+            ShareValues.ancestor1_counts += 2;
+            ShareValues.ancestor2_counts += 2;
+            ShareValues.ancestor3_counts += 2;
+            ShareValues.ancestor4_counts += 2;
+            ShareValues.ancestor5_counts += 2;
+            ShareValues.ancestor6_counts += 2;
+            EnemyCounts += 10;
+            currentGameLevel = ShareValues.GameLevel;
+            StartCoroutine(SpawnEnemies());
+        }
+
+        
         // 更新倒數計時器
         timeRemaining -= Time.deltaTime;
 
@@ -83,6 +97,7 @@ public class GameManagerGround : MonoBehaviour
         // 显示询问进入下一关的 UI 或执行其他逻辑
         // 这里仅作为示例，你可能需要在你的游戏中使用自己的 UI 界面和逻辑
         Debug.Log("Do you want to go to the next level?");
+        PauseGame();
         // 在这里你可以显示一个 UI，让玩家选择是否进入下一关
     }
 
@@ -124,14 +139,14 @@ public class GameManagerGround : MonoBehaviour
     {
         StopCoroutine(SpawnEnemies());
         isStop = true;
-        // Time.timeScale = 0f;  // 设置时间流逝速度为0，即暂停
+        Time.timeScale = 0f;  // 设置时间流逝速度为0，即暂停
         Debug.Log("Game Paused");
     }
 
     public void ResumeGame()
     {
         isStop = false;
-        // Time.timeScale = 1f;  // 恢复正常的时间流逝速度
+        Time.timeScale = 1f;  // 恢复正常的时间流逝速度
         Debug.Log("Game Resumed");
     }
 

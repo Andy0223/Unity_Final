@@ -7,7 +7,7 @@ public class AncestorController : MonoBehaviour
     public float maxRightXPosition;
     public float maxLeftXPosition;
     private int collisionCount = 0;
-    public int maxCollisionCount = 6;
+    private int maxCollisionCount = 6;
     private Rigidbody2D rb;
 
     // 表示當前移動方向的列舉
@@ -43,7 +43,6 @@ public class AncestorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(spriteRenderer.flipX);
 
         // 根據當前移動方向進行移動
         switch (currentDirection)
