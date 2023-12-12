@@ -28,26 +28,26 @@ public class MainCharacterController : MonoBehaviour
     void Update()
     {
         // 跳
-        if (Input.GetKeyDown(KeyCode.W) && (isGrounded))
+        if (Input.GetKeyDown(KeyCode.W) && (isGrounded) && !(gameManager.isStop) )
         {
             Debug.LogWarning("Jumping!");
             // 使用 Rigidbody2D 的 velocity 來給予垂直速度
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        else if (Input.GetKey(KeyCode.D) && (!isTrap))
+        else if (Input.GetKey(KeyCode.D) && (!isTrap)&& !(gameManager.isStop) )
         {
             transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
             GetComponent<SpriteRenderer>().flipX = false; 
             animator.SetBool("run", true);
         }
-        else if (Input.GetKey(KeyCode.A) && (!isTrap))
+        else if (Input.GetKey(KeyCode.A) && (!isTrap)&& !(gameManager.isStop) )
         {
             transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
             GetComponent<SpriteRenderer>().flipX = true; 
             animator.SetBool("run", true);
         }
         // 翻滾迴避
-        else if(Input.GetKeyDown(KeyCode.S)){
+        else if(Input.GetKeyDown(KeyCode.S)&& !(gameManager.isStop) ){
             Debug.LogWarning("Rollng!");
             // 使用 Rigidbody2D 的 velocity 來給予垂直速度
             rb.velocity = new Vector2(rb.velocity.x, -jumpForce);
