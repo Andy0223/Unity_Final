@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
         //偵測血量
         if (HealthController.HealCurrent <= 0){
             SetGameOver();
+
         }
         //重新開始
         //按下R重新開始
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
         //遊戲結束
         IsGameOver = true;
         LossPop.SetActive(true);
+        
         
     }
     public void SetWin(){
