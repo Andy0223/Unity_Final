@@ -30,8 +30,8 @@ public class AncestorController : MonoBehaviour
         GameObject selectedEnemyBase = GameObject.Find(enemyBaseName);
         maxRightXPosition = selectedEnemyBase.transform.position.x;
 
-        string playerBaseName = "dungeon_door_opened";
-        GameObject selectedHomeBase = GameObject.Find(playerBaseName);
+        string playerBaseSign = "Ground1_sign";
+        GameObject selectedHomeBase = GameObject.Find(playerBaseSign);
         maxLeftXPosition = selectedHomeBase.transform.position.x;
 
         // 取得 SpriteRenderer
@@ -87,33 +87,32 @@ public class AncestorController : MonoBehaviour
             HandleCollision();
         }
 
-        if (collision.gameObject.CompareTag("Ancestor"))
+        if (collision.gameObject.CompareTag("Sign"))
         {
+            Debug.Log("Collision with: " + collision.gameObject.name);
             // 獲取另一個物體的 Collider 和 Rigidbody
-            Rigidbody2D otherRigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
-            Rigidbody2D thisRigidbody = this.gameObject.GetComponent<Rigidbody2D>();
+            Collider2D otherCollider = collision.gameObject.GetComponent<Collider2D>();
 
             // 確認物體是否有 Collider 和 Rigidbody
-            if (otherRigidbody != null)
+            if (otherCollider != null)
             {
-                // 將 Collider 和 Rigidbody 設為 enabled
-                otherRigidbody.simulated = false; // 如果 Rigidbody 使用 simulated 屬性的話
-                thisRigidbody.simulated = false;
+                // 將 Collider 和 Rigidbody 設為 disabled
+                otherCollider.enabled = false;
+
 
                 // 一段時間後，將 Collider 和 Rigidbody 再次設回 disabled
-                StartCoroutine(DisableRigidbody(thisRigidbody, otherRigidbody, 2f)); // 假設 2 秒後設回 disabled
+                StartCoroutine(DisableColliderAndRigidbody(otherCollider, 2f)); // 假設 2 秒後設回 disabled
             }
         }
     }
 
     // 協程：延遲一段時間後將 Collider 和 Rigidbody 設回 disabled
-    private IEnumerator DisableRigidbody(Rigidbody2D thisRigidbody, Rigidbody2D rigidbody, float delay)
+    private IEnumerator DisableColliderAndRigidbody(Collider2D collider, float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        // 將 Collider 和 Rigidbody 設回 disabled
-        thisRigidbody.simulated = false;
-        rigidbody.simulated = true; // 如果 Rigidbody 使用 simulated 屬性的話
+        // 將 Collider 和 Rigidbody 設回 abled
+        collider.enabled = true;
     }
 
     private void HandleCollision()
@@ -136,7 +135,6 @@ public class AncestorController : MonoBehaviour
 
         // 記錄拋物線彈開前的位置
         Vector2 initialPosition = transform.position;
-
         // 施加一个向上和向右的力，以模拟拋物線彈開
         rb.AddForce(new Vector2(-5f, 3f), ForceMode2D.Impulse);
 

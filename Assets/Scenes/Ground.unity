@@ -1911,7 +1911,7 @@ GameObject:
   - component: {fileID: 946942555}
   - component: {fileID: 946942557}
   m_Layer: 0
-  m_Name: Gorund1_sign
+  m_Name: Ground1_sign
   m_TagString: Sign
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2478,7 +2478,7 @@ GameObject:
   - component: {fileID: 1039001266}
   - component: {fileID: 1039001268}
   m_Layer: 0
-  m_Name: Gorund3_sign
+  m_Name: Ground3_sign
   m_TagString: Sign
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3199,7 +3199,7 @@ GameObject:
   - component: {fileID: 1277585978}
   - component: {fileID: 1277585980}
   m_Layer: 0
-  m_Name: Gorund2_sign
+  m_Name: Ground2_sign
   m_TagString: Sign
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
