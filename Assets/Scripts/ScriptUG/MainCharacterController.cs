@@ -105,7 +105,7 @@ public class MainCharacterController : MonoBehaviour
         if (other.CompareTag("Trolley"))
         {
             // gameManager.SetWin();
-            // collision.gameObject.GetComponent<AudioSource>().Play();
+            other.gameObject.GetComponent<AudioSource>().Play();
 
             // 獲取目前的寶箱名字
             string trolleyName = other.gameObject.name;
