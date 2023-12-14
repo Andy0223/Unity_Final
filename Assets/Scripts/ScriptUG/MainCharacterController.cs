@@ -104,13 +104,11 @@ public class MainCharacterController : MonoBehaviour
         }
         if (other.CompareTag("Trolley"))
         {
-            // gameManager.SetWin();
             other.gameObject.GetComponent<AudioSource>().Play();
-
+            
             // 獲取目前的寶箱名字
             string trolleyName = other.gameObject.name;
-            Debug.Log("123"+trolleyName);
-            Debug.Log(trolleyName);
+            // gameManager.SetWin();
             trolleyManager.CloseTrolley(trolleyName);
         }
     }
