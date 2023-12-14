@@ -25,8 +25,12 @@ public class ShareValues : MonoBehaviour
     // start from level 0
     public static int GameLevel = 0;
 
-    //Trolly
+    //UG_Trolly
     public static bool trolley_1=true;
     public static bool trolley_2=true;
     public static bool trolley_3=true;
+    //UG_PlayerPosition
+    // 儲存玩家初始位置的變數
+    public static Vector3 UGplayerPosition = new Vector3(0, -2, 0);
+
 }
