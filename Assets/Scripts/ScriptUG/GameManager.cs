@@ -98,8 +98,8 @@ public class GameManager : MonoBehaviour
 
         //遊戲結束
         IsGameOver = true;
-        LossPop.SetActive(true);
-        
+        //LossPop.SetActive(true);
+        SceneManager.LoadSceneAsync(4);
         
     }
     public void SetWin(){

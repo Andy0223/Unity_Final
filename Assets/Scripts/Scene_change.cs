@@ -10,6 +10,8 @@ public class Scene_change : MonoBehaviour
     // Ground:2
     // UnderGround:3
     // ch1_fail:4
+    // ch1_win_first:5
+    // ch1_win_two:6
 
     public void Menu(){
         SceneManager.LoadSceneAsync(0);
