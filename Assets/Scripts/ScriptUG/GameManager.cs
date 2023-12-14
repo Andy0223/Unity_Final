@@ -36,11 +36,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timeForHealth;
     public HealthController healthController; // 引用 HealthController
     public bool isStop = false;
+    public GameObject[] trolleyes;
 
     void Start(){
         IsGameOver = false;
         HealthController.HealCurrent=100;
         isStop = false;
+
+        if(ShareValues.trolley_1==false){
+            trolleyes[0].SetActive(false);
+        }
+        if(ShareValues.trolley_2==false){
+            trolleyes[1].SetActive(false);
+        }
+        if(ShareValues.trolley_3==false){
+            trolleyes[2].SetActive(false);
+        }
     }
 
     void Update()
@@ -71,7 +82,6 @@ public class GameManager : MonoBehaviour
         //偵測血量
         if (HealthController.HealCurrent <= 0){
             SetGameOver();
-
         }
         //重新開始
         //按下R重新開始
@@ -103,13 +113,6 @@ public class GameManager : MonoBehaviour
         house_lantern_off.SetActive(false);
         house_lantern_on.SetActive(true);
     }
-
-    // // 增加計時器的方法
-    // public void IncreaseTime(float amount)
-    // {
-    //     timer += amount;
-    //     HealthController.HealCurrent -= timeForHealth;
-    // }
     public void PauseGame()
     {
         //StopCoroutine(SpawnEnemies());
@@ -124,5 +127,9 @@ public class GameManager : MonoBehaviour
         isStop = false;
         // Time.timeScale = 1f;  // 恢复正常的时间流逝速度
         Debug.Log("Game Resumed");
+    }
+
+    public void Trolley(){
+
     }
 }

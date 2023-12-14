@@ -2111,9 +2111,6 @@ Transform:
   - {fileID: 480057375}
   - {fileID: 1926376357}
   - {fileID: 617918177}
-  - {fileID: 676486719}
-  - {fileID: 397306657}
-  - {fileID: 2132275377}
   - {fileID: 474398017}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3002,8 +2999,8 @@ GameObject:
   - component: {fileID: 397306658}
   - component: {fileID: 397306660}
   m_Layer: 0
-  m_Name: trolley (1)
-  m_TagString: Treasurebox
+  m_Name: trolley2
+  m_TagString: Trolley
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3017,11 +3014,11 @@ Transform:
   m_GameObject: {fileID: 397306656}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.21, y: -3.37, z: -0.09170094}
+  m_LocalPosition: {x: -131.59987, y: -3.7588038, z: 0.72372544}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 212033796}
+  m_Father: {fileID: 407978994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &397306658
 BoxCollider2D:
@@ -3052,7 +3049,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.13729382, y: -0.49236095}
@@ -3216,6 +3213,58 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &407978993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 407978994}
+  - component: {fileID: 407978995}
+  m_Layer: 0
+  m_Name: TrolleyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &407978994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407978993}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 676486719}
+  - {fileID: 397306657}
+  - {fileID: 2132275377}
+  m_Father: {fileID: 989344747}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &407978995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407978993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e1b374cb443bc4b96cc5be4a40a039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 729631936}
+  trolleyes:
+  - {fileID: 676486718}
+  - {fileID: 397306656}
+  - {fileID: 2132275376}
 --- !u!1 &414016727
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,6 +4132,8 @@ MonoBehaviour:
   gameManager: {fileID: 729631936}
   healthController: {fileID: 911596202}
   lanternManager: {fileID: 965620102}
+  trolleyManager: {fileID: 0}
+  shareValues: {fileID: 0}
 --- !u!70 &516389225
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5300,8 +5351,8 @@ GameObject:
   - component: {fileID: 676486720}
   - component: {fileID: 676486722}
   m_Layer: 0
-  m_Name: trolley
-  m_TagString: Treasurebox
+  m_Name: trolley1
+  m_TagString: Trolley
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5315,11 +5366,11 @@ Transform:
   m_GameObject: {fileID: 676486718}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 104.45, y: -1.8, z: -0.09170094}
+  m_LocalPosition: {x: -59.359863, y: -2.188804, z: 0.72372544}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 212033796}
+  m_Father: {fileID: 407978994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &676486720
 BoxCollider2D:
@@ -5350,7 +5401,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.1331749, y: -0.4838655}
@@ -5675,7 +5726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1912349379}
-  healthText: {fileID: 0}
+  healthText: {fileID: 1568713886}
   IsGameOver: 0
   LossPop: {fileID: 373628001}
   WinPop: {fileID: 2006782064}
@@ -5684,6 +5735,10 @@ MonoBehaviour:
   timeForHealth: 3
   healthController: {fileID: 911596202}
   isStop: 0
+  trolleyes:
+  - {fileID: 676486718}
+  - {fileID: 397306656}
+  - {fileID: 2132275376}
 --- !u!4 &729631937
 Transform:
   m_ObjectHideFlags: 0
@@ -5692,12 +5747,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729631935}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.6069744, y: -4.5803256, z: -0.39414153}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -165.72177, y: -5.2931023, z: 0.3295839}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 989344747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &729631938
 Animator:
@@ -6379,7 +6434,7 @@ GameObject:
   - component: {fileID: 812221889}
   - component: {fileID: 812221888}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TrolleyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7697,8 +7752,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965620101}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.980394, y: 1.1515601, z: -0.009533534}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -147.1344, y: 0.4387833, z: 0.7141919}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7708,7 +7763,7 @@ Transform:
   - {fileID: 510284307}
   - {fileID: 2097568317}
   - {fileID: 211610618}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 989344747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &967315293
 GameObject:
@@ -8035,6 +8090,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &989344746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 989344747}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &989344747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989344746}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 162.11479, y: 0.7127768, z: -0.72372544}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 729631937}
+  - {fileID: 407978994}
+  - {fileID: 965620103}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1002011183
 GameObject:
   m_ObjectHideFlags: 0
@@ -25114,8 +25203,8 @@ GameObject:
   - component: {fileID: 2132275379}
   - component: {fileID: 2132275378}
   m_Layer: 0
-  m_Name: chest_0
-  m_TagString: Treasurebox
+  m_Name: trolley3
+  m_TagString: Trolley
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25129,11 +25218,11 @@ Transform:
   m_GameObject: {fileID: 2132275376}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 165.06, y: 1.62, z: -0.09170094}
+  m_LocalPosition: {x: 1.2501373, y: 1.231196, z: 0.72372544}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 212033796}
+  m_Father: {fileID: 407978994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &2132275378
 AudioSource:
@@ -25260,7 +25349,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.13813019, y: -0.479401}
@@ -25499,9 +25588,8 @@ SceneRoots:
   - {fileID: 212033796}
   - {fileID: 516389227}
   - {fileID: 638884893}
-  - {fileID: 729631937}
   - {fileID: 1977764902}
   - {fileID: 65939182}
-  - {fileID: 965620103}
   - {fileID: 2003009126}
   - {fileID: 588752225}
+  - {fileID: 989344747}
