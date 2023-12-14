@@ -7,10 +7,10 @@ TagManager:
   - Trap
   - Ground
   - Wall
-  - Treasurebox
   - Lantern
   - Ancestor
   - Enemy
+  - Trolley
   layers:
   - Default
   - TransparentFX
