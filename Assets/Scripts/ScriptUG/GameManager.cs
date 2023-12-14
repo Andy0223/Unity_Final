@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver;
     [SerializeField] private GameObject LossPop;
     [SerializeField] private GameObject WinPop;
+    [SerializeField] private GameObject Story1;
+    [SerializeField] private GameObject Story2;
+    [SerializeField] private GameObject Story3;
     [SerializeField] private GameObject house_lantern_off;
     [SerializeField] private GameObject house_lantern_on;
     [SerializeField] private float timeForHealth;
@@ -99,14 +102,12 @@ public class GameManager : MonoBehaviour
         //遊戲結束
         IsGameOver = true;
         LossPop.SetActive(true);
-        
+        SceneManager.LoadSceneAsync(4);
         
     }
     public void SetWin(){
         //遊戲結束
         IsGameOver = true;
-        WinPop.SetActive(true);
-        
     }
 
     public void SetlanternOn(){
