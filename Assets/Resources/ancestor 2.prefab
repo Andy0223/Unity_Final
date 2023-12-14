@@ -324,4 +324,3 @@ MonoBehaviour:
   movementSpeed: 3
   maxRightXPosition: 0
   maxLeftXPosition: 0
-  maxCollisionCount: 6

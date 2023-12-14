@@ -7,10 +7,10 @@ public class GameManagerGround : MonoBehaviour
 {
     public List<GameObject> enemyPrefabs;
     public float spawnInterval = 7f;
-    public float initialMinutes = 2f; // 初始分钟数
-    public float initialSeconds = 0f; // 初始秒数
+    public float initialMinutes = 2f; // 初始分鐘
+    public float initialSeconds = 0f; // 初始秒數
 
-    private int EnemyCounts = 2;
+    private int EnemyCounts = 5;
     private int spawnEnemyCounts = 0;
     private float totalSeconds;
     private float timeRemaining;
@@ -139,15 +139,21 @@ public class GameManagerGround : MonoBehaviour
     {
         StopCoroutine(SpawnEnemies());
         isStop = true;
-        Time.timeScale = 0f;  // 设置时间流逝速度为0，即暂停
         Debug.Log("Game Paused");
     }
 
     public void ResumeGame()
     {
         isStop = false;
-        Time.timeScale = 1f;  // 恢复正常的时间流逝速度
         Debug.Log("Game Resumed");
+    }
+
+    public void GameOver()
+    {
+        isStop = true;
+        StopCoroutine(SpawnEnemies());
+        Debug.Log("GameOver");
+        
     }
 
 }

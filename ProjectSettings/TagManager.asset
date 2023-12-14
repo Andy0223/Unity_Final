@@ -11,6 +11,7 @@ TagManager:
   - Lantern
   - Ancestor
   - Enemy
+  - Sign
   layers:
   - Default
   - TransparentFX
