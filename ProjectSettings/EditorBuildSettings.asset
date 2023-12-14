@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ch1_fail.unity
     guid: fb887d97e5ad542b5838b16e4227af79
+  - enabled: 1
+    path: Assets/Scenes/Ch1_win_first.unity
+    guid: 33a2e697f66b149119515866a53f5152
+  - enabled: 1
+    path: Assets/Scenes/Ch1_win_two.unity
+    guid: 7660a7b7a3f5c48d7821f9ef5b1c0b28
   m_configObjects: {}
