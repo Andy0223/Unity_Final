@@ -219,7 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  maxCollisionCount: 3
   stopXPosition: 0
 --- !u!95 &5436639662698228257
 Animator:

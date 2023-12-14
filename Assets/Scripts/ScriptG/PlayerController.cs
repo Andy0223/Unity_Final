@@ -31,7 +31,12 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        ancestor1_remainCounts.enabled = false;
+        //ancestor1_remainCounts.enabled = false;
+        // 預設選擇第一個祖先
+        selectSprite = gameObject.AddComponent<SelectSprite>();
+        spriteRenderers = new List<SpriteRenderer> { ancestor1, ancestor2, ancestor3, ancestor4, ancestor5, ancestor6 };
+        ancestors_remainCounts = new List<Text> { ancestor1_remainCounts, ancestor2_remainCounts, ancestor3_remainCounts, ancestor4_remainCounts, ancestor5_remainCounts, ancestor6_remainCounts };
+        selectSprite.SelectAncestor(ancestor1, spriteRenderers, ancestors_remainCounts);
         ancestor2_remainCounts.enabled = false;
         ancestor3_remainCounts.enabled = false;
         ancestor4_remainCounts.enabled = false;
@@ -39,9 +44,6 @@ public class PlayerController : MonoBehaviour
         ancestor6_remainCounts.enabled = false;
         rb = GetComponent<Rigidbody2D>();
         // 添加 SelectSprite 腳本並設置參考
-        selectSprite = gameObject.AddComponent<SelectSprite>();
-        spriteRenderers = new List<SpriteRenderer> { ancestor1, ancestor2, ancestor3, ancestor4, ancestor5, ancestor6 };
-        ancestors_remainCounts = new List<Text> { ancestor1_remainCounts, ancestor2_remainCounts, ancestor3_remainCounts, ancestor4_remainCounts, ancestor5_remainCounts, ancestor6_remainCounts };
         animator = gameObject.GetComponent<Animator>();
     }
 
