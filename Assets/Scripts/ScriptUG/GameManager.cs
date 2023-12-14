@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
         if (IsGameOver && Input.GetKeyDown(KeyCode.R))
         {
             // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            SceneManager.LoadScene("UnderGround");  
+            SceneManager.LoadScene("Ground");  
         }
 
     }
