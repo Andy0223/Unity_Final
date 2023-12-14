@@ -24,4 +24,9 @@ public class ShareValues : MonoBehaviour
 
     // start from level 0
     public static int GameLevel = 0;
+
+    //Trolly
+    public static bool trolley_1=true;
+    public static bool trolley_2=true;
+    public static bool trolley_3=true;
 }

@@ -12,17 +12,14 @@ public class MainCharacterController : MonoBehaviour
     private bool isTrap=false;
     private Rigidbody2D rb;
     private Animator animator;
-    public HealthController healthController; // 引用 HealthController
+    public HealthController healthController;
     public LanternManager lanternManager;
+    public TrolleyManager trolleyManager;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
-        if (rb == null)
-        {
-            Debug.LogWarning("Rigidbody2D not found on the character.");
-        }
     }
 
     void Update()
@@ -88,18 +85,6 @@ public class MainCharacterController : MonoBehaviour
             StartCoroutine(WaitForTrapReset());
             collision.gameObject.GetComponent<AudioSource>().Play();
         }
-        if (collision.gameObject.CompareTag("Treasurebox"))
-        {
-            if (gameManager != null)
-            {
-                gameManager.SetWin();
-                collision.gameObject.GetComponent<AudioSource>().Play();
-            }
-            else
-            {
-                Debug.LogError("GameManager is not assigned to MainCharacterController.");
-            }
-        }
 
     }
 
@@ -114,6 +99,17 @@ public class MainCharacterController : MonoBehaviour
             string newLanternName = "on" + GetLastDigit(lanternName);
             lanternManager.TurnOnLantern(newLanternName);
             
+        }
+        if (other.CompareTag("Trolley"))
+        {
+            // gameManager.SetWin();
+            // collision.gameObject.GetComponent<AudioSource>().Play();
+
+            // 獲取目前的寶箱名字
+            string trolleyName = other.gameObject.name;
+            Debug.Log("123"+trolleyName);
+            Debug.Log(trolleyName);
+            trolleyManager.CloseTrolley(trolleyName);
         }
     }
     // 取得字串的最末數字

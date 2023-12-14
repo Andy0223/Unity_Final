@@ -13,11 +13,7 @@ public class LanternManager : MonoBehaviour
 
     void Update()
     {
-        // 在 Update 中檢測按鍵並開啟下一盞燈
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     TurnOnLantern();
-        // }
+        
     }
 
     void TurnOffAllLanterns()
