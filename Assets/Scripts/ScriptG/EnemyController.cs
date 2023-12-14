@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     private int collisionCount = 0;
     private Rigidbody2D rb;
     public float stopXPosition;
+    private GameManagerGround gameManagerGround;
 
     void Start()
     {
@@ -16,6 +17,8 @@ public class EnemyController : MonoBehaviour
         stopXPosition = selectedEnemyBase.transform.position.x;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        gameManagerGround = GameObject.Find("GameManager").GetComponent<GameManagerGround>();
+
     }
 
     void Update()
@@ -36,7 +39,16 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Collision with: " + collision.gameObject.name);
             HandleCollision();
         }
+
+        if (collision.gameObject.CompareTag("Sign"))
+        {
+            Debug.Log("Collision with: " + collision.gameObject.name);
+            gameManagerGround.GameOver();
+        }
+
     }
+
+    
 
     private void HandleCollision()
     {
@@ -60,7 +72,7 @@ public class EnemyController : MonoBehaviour
         Vector2 initialPosition = transform.position;
 
         // 施加一个向上和向右的力，以模拟拋物線彈開
-        rb.AddForce(new Vector2(7f, 5f), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(5f, 3f), ForceMode2D.Impulse);
 
         // 等待一段時間，你可以根据需要调整这个时间
         yield return new WaitForSeconds(1f);

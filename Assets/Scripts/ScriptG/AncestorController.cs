@@ -86,6 +86,34 @@ public class AncestorController : MonoBehaviour
             Debug.Log("Collision with: " + collision.gameObject.name);
             HandleCollision();
         }
+
+        if (collision.gameObject.CompareTag("Ancestor"))
+        {
+            // 獲取另一個物體的 Collider 和 Rigidbody
+            Rigidbody2D otherRigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
+            Rigidbody2D thisRigidbody = this.gameObject.GetComponent<Rigidbody2D>();
+
+            // 確認物體是否有 Collider 和 Rigidbody
+            if (otherRigidbody != null)
+            {
+                // 將 Collider 和 Rigidbody 設為 enabled
+                otherRigidbody.simulated = false; // 如果 Rigidbody 使用 simulated 屬性的話
+                thisRigidbody.simulated = false;
+
+                // 一段時間後，將 Collider 和 Rigidbody 再次設回 disabled
+                StartCoroutine(DisableRigidbody(thisRigidbody, otherRigidbody, 2f)); // 假設 2 秒後設回 disabled
+            }
+        }
+    }
+
+    // 協程：延遲一段時間後將 Collider 和 Rigidbody 設回 disabled
+    private IEnumerator DisableRigidbody(Rigidbody2D thisRigidbody, Rigidbody2D rigidbody, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // 將 Collider 和 Rigidbody 設回 disabled
+        thisRigidbody.simulated = false;
+        rigidbody.simulated = true; // 如果 Rigidbody 使用 simulated 屬性的話
     }
 
     private void HandleCollision()
@@ -110,7 +138,7 @@ public class AncestorController : MonoBehaviour
         Vector2 initialPosition = transform.position;
 
         // 施加一个向上和向右的力，以模拟拋物線彈開
-        rb.AddForce(new Vector2(-7f, 5f), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(-5f, 3f), ForceMode2D.Impulse);
 
         // 等待一段時間，你可以根据需要调整这个时间
         yield return new WaitForSeconds(1f);

@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
     void SpawnPrefab()
     {
-        Vector3 ancestorSpawnPosition = new Vector3(transform.position.x + 10f, transform.position.y, transform.position.z);
+        Vector3 ancestorSpawnPosition = new Vector3(transform.position.x + 8f, transform.position.y, transform.position.z);
         // 檢查Prefab名字是否存在
         if (!string.IsNullOrEmpty(selectSprite.selectedAncestorName))
         {
