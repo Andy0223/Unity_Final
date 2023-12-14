@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
         //StopCoroutine(SpawnEnemies());
         isStop = true;
         // Time.timeScale = 0f;  // 设置时间流逝速度为0，即暂停
+        
         Debug.Log("Game Paused");
     }
 

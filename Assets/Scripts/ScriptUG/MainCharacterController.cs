@@ -86,12 +86,14 @@ public class MainCharacterController : MonoBehaviour
             Debug.Log("HealCurrent: " + HealthController.HealCurrent+"max"+HealthController.HealMax);
             // 啟動等待半秒的協程
             StartCoroutine(WaitForTrapReset());
+            collision.gameObject.GetComponent<AudioSource>().Play();
         }
         if (collision.gameObject.CompareTag("Treasurebox"))
         {
             if (gameManager != null)
             {
                 gameManager.SetWin();
+                collision.gameObject.GetComponent<AudioSource>().Play();
             }
             else
             {
@@ -111,6 +113,8 @@ public class MainCharacterController : MonoBehaviour
             // 在燈籠名字後面加上 'on' 以及最末數字
             string newLanternName = "on" + GetLastDigit(lanternName);
             lanternManager.TurnOnLantern(newLanternName);
+
+            other.gameObject.GetComponent<AudioSource>().Play();
         }
     }
     // 取得字串的最末數字
