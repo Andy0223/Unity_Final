@@ -25,16 +25,25 @@ public class TrolleyManager : MonoBehaviour
         if(trolleyName=="trolley1"){
             trolleyes[0].SetActive(false);
             ShareValues.trolley_1=false;
+            //增加祖先範例
+            ShareValues.ancestor1_counts +=2;
+            //故事1
             gameManager.SetWin();
         }
         else if(trolleyName=="trolley2"){
             trolleyes[1].SetActive(false);
             ShareValues.trolley_2=false;
+            //增加祖先範例
+            ShareValues.ancestor1_counts +=2;
+            //故事2
             gameManager.SetWin();
         }
         else if(trolleyName=="trolley3"){
             trolleyes[2].SetActive(false);
             ShareValues.trolley_3=false;
+            //增加祖先範例
+            ShareValues.ancestor1_counts +=2;
+            //故事3
             gameManager.SetWin();
         }
     }

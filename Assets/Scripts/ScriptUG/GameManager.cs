@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         IsGameOver = false;
         HealthController.HealCurrent=100;
         isStop = false;
-
+        ShareValues.UGSceneEntryCounts+=1;
         if(ShareValues.trolley_1==false){
             trolleyes[0].SetActive(false);
         }

@@ -4132,8 +4132,7 @@ MonoBehaviour:
   gameManager: {fileID: 729631936}
   healthController: {fileID: 911596202}
   lanternManager: {fileID: 965620102}
-  trolleyManager: {fileID: 0}
-  shareValues: {fileID: 0}
+  trolleyManager: {fileID: 407978995}
 --- !u!70 &516389225
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

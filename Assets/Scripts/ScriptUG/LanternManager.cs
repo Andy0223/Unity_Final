@@ -40,6 +40,11 @@ public class LanternManager : MonoBehaviour
 
         if (lanternToTurnOn != null)
         {
+            // 獲取當前燈籠的位置
+            Vector3 lanternPosition = lanternToTurnOn.transform.position;
+
+            // 更新 shareValues.UGplayerPosition
+            ShareValues.UGplayerPosition = lanternPosition;
             // 關閉當前燈
             // lanterns[currentLanternIndex].SetActive(false);
             //Debug.Log("關閉");

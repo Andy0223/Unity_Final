@@ -18,6 +18,8 @@ public class MainCharacterController : MonoBehaviour
 
     void Start()
     {
+        transform.position = ShareValues.UGplayerPosition;
+        Debug.Log(ShareValues.UGplayerPosition);
         rb = GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
     }
