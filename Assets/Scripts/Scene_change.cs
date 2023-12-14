@@ -9,11 +9,12 @@ public class Scene_change : MonoBehaviour
     // Ch1:1
     // Ground:2
     // UnderGround:3
+    // ch1_fail:4
 
     public void Menu(){
         SceneManager.LoadSceneAsync(0);
     }
-    
+
     public void StartGame(){
         SceneManager.LoadSceneAsync(1);
     }
@@ -25,6 +26,7 @@ public class Scene_change : MonoBehaviour
     public void StartUnderGround(){
         SceneManager.LoadSceneAsync(3);
     }
+
 
 
 

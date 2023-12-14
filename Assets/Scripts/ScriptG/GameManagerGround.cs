@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Text = TMPro.TextMeshProUGUI;
+using UnityEngine.SceneManagement;
 
 public class GameManagerGround : MonoBehaviour
 {
@@ -150,10 +151,10 @@ public class GameManagerGround : MonoBehaviour
 
     public void GameOver()
     {
-        isStop = true;
-        StopCoroutine(SpawnEnemies());
+        //isStop = true;
+        //StopCoroutine(SpawnEnemies());
         Debug.Log("GameOver");
-        
+        SceneManager.LoadSceneAsync(4);
     }
 
 }
