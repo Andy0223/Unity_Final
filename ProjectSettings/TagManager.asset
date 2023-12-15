@@ -11,7 +11,7 @@ TagManager:
   - Ancestor
   - Enemy
   - Sign
-  - Trolley
+  - Treasure
   layers:
   - Default
   - TransparentFX

@@ -2511,9 +2511,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 519420034}
-        m_TargetAssemblyTypeName: Scene_change, Assembly-CSharp
-        m_MethodName: StartGround
+      - m_Target: {fileID: 729631936}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3203,8 +3203,8 @@ GameObject:
   - component: {fileID: 397306658}
   - component: {fileID: 397306660}
   m_Layer: 0
-  m_Name: trolley2
-  m_TagString: Trolley
+  m_Name: treasure2
+  m_TagString: Treasure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3417,6 +3417,81 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &402413669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 402413670}
+  - component: {fileID: 402413672}
+  - component: {fileID: 402413671}
+  m_Layer: 5
+  m_Name: backGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &402413670
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402413669}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1450033091}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 8.1097, y: -16.2197}
+  m_SizeDelta: {x: 2038.2383, y: 1162.3818}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &402413671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402413669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.827451}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &402413672
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402413669}
+  m_CullTransparentMesh: 1
 --- !u!1 &407978993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3428,7 +3503,7 @@ GameObject:
   - component: {fileID: 407978994}
   - component: {fileID: 407978995}
   m_Layer: 0
-  m_Name: TrolleyManager
+  m_Name: TreasureManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3465,14 +3540,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 729631936}
-  Story1: {fileID: 1794565469}
-  Story2: {fileID: 900129608}
-  Story3: {fileID: 1461562198}
   button: {fileID: 227574080}
-  trolleyes:
+  backGround: {fileID: 402413669}
+  treasures:
   - {fileID: 676486718}
   - {fileID: 397306656}
   - {fileID: 2132275376}
+  Storys:
+  - {fileID: 1794565469}
+  - {fileID: 900129608}
+  - {fileID: 1461562198}
 --- !u!1 &414016727
 GameObject:
   m_ObjectHideFlags: 0
@@ -4340,7 +4417,8 @@ MonoBehaviour:
   gameManager: {fileID: 729631936}
   healthController: {fileID: 911596202}
   lanternManager: {fileID: 965620102}
-  trolleyManager: {fileID: 407978995}
+  treasureManager: {fileID: 407978995}
+  backgroundMusic: {fileID: 119607492}
 --- !u!70 &516389225
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5571,8 +5649,8 @@ GameObject:
   - component: {fileID: 676486720}
   - component: {fileID: 676486722}
   m_Layer: 0
-  m_Name: trolley1
-  m_TagString: Trolley
+  m_Name: treasure1
+  m_TagString: Treasure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5949,7 +6027,6 @@ MonoBehaviour:
   healthText: {fileID: 1568713886}
   IsGameOver: 0
   LossPop: {fileID: 373628001}
-  WinPop: {fileID: 0}
   Story1: {fileID: 0}
   Story2: {fileID: 0}
   Story3: {fileID: 0}
@@ -5958,7 +6035,7 @@ MonoBehaviour:
   timeForHealth: 3
   healthController: {fileID: 911596202}
   isStop: 0
-  trolleyes:
+  treasures:
   - {fileID: 676486718}
   - {fileID: 397306656}
   - {fileID: 2132275376}
@@ -11402,6 +11479,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 402413670}
   - {fileID: 1794565470}
   - {fileID: 900129609}
   - {fileID: 1461562201}
@@ -25517,8 +25595,8 @@ GameObject:
   - component: {fileID: 2132275379}
   - component: {fileID: 2132275378}
   m_Layer: 0
-  m_Name: trolley3
-  m_TagString: Trolley
+  m_Name: treasure3
+  m_TagString: Treasure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
