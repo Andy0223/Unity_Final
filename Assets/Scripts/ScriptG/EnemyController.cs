@@ -52,9 +52,11 @@ public class EnemyController : MonoBehaviour
 
     private void HandleCollision()
     {
-        if (collisionCount >= ShareValues.SingleEnemyCollisionCount)
+        if (collisionCount == ShareValues.SingleEnemyCollisionCount)
         {
             Destroy(gameObject);
+            gameManagerGround.EnemyDestroyCounts++;
+            Debug.Log("EnemyDestroyCounts: " + gameManagerGround.EnemyDestroyCounts);
         }
         else
         {

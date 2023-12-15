@@ -7,63 +7,32 @@ using UnityEngine.SceneManagement;
 public class GameManagerGround : MonoBehaviour
 {
     public List<GameObject> enemyPrefabs;
-    public float spawnInterval = 7f;
+    public float spawnInterval;
     public float initialMinutes = 2f; // 初始分鐘
     public float initialSeconds = 0f; // 初始秒數
+    public int EnemyDestroyCounts = 0;
+    public Text LevelText;
+    public Text TotalEnemyText;
 
-    private int EnemyCounts;
     private int spawnEnemyCounts = 0;
-    private float totalSeconds;
-    private float timeRemaining;
     private int currentGameLevel;
     public bool isStop = false;
-    public Text timerText;
     
     void Start()
     {
-        totalSeconds = initialMinutes * 60 + initialSeconds; // 将初始时间转换为总秒数
-        timeRemaining = totalSeconds;
         currentGameLevel = ShareValues.UGSceneEntryCounts;
-        EnemyCounts += 10 * (currentGameLevel + 1);
+        Debug.Log("currentGameLevel: " + currentGameLevel);
+        ShareValues.EnemyCounts = 5 * (currentGameLevel + 1);
+        spawnInterval = ShareValues.spawnInterval - currentGameLevel;
+        LevelText.text = "Level: " + currentGameLevel;
+        TotalEnemyText.text = "Total Enemy: " + ShareValues.EnemyCounts;
         isStop = false;
         StartCoroutine(SpawnEnemies());
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            ShareValues.GameLevel += 1;
-            ResumeGame();
-        }
-        if (ShareValues.GameLevel - currentGameLevel == 1)
-        {
-            //ShareValues.ancestor1_counts += 2;
-            //ShareValues.ancestor2_counts += 2;
-            //ShareValues.ancestor3_counts += 2;
-            //ShareValues.ancestor4_counts += 2;
-            //ShareValues.ancestor5_counts += 2;
-            //ShareValues.ancestor6_counts += 2;
-            EnemyCounts += 10;
-            currentGameLevel = ShareValues.GameLevel;
-            StartCoroutine(SpawnEnemies());
-        }
-
         
-        // 更新倒數計時器
-        timeRemaining -= Time.deltaTime;
-
-        // 確保時間不為負數
-        timeRemaining = Mathf.Max(timeRemaining, 0f);
-
-        // 如果時間到，重設計時器
-        if (timeRemaining <= 0f)
-        {
-            Debug.Log("Game Over");
-            PauseGame();
-            // 不再重設計時器，等待玩家决定是否进入下一关
-            // timeRemaining = spawnInterval;
-        }
         
         if (isStop)
         {
@@ -74,13 +43,17 @@ public class GameManagerGround : MonoBehaviour
             Time.timeScale = 1f;  // 恢復時間流逝
         }
 
-        // 更新UI上的计时器显示
-        UpdateTimerUI();
+
+        if (EnemyDestroyCounts == ShareValues.EnemyCounts)
+        {
+            // 要做判斷是不是最後一關 Scene8
+            ChangetoUnderGround();
+        }
     }
 
     IEnumerator SpawnEnemies()
     {
-        while (spawnEnemyCounts < EnemyCounts)
+        while (spawnEnemyCounts < ShareValues.EnemyCounts)
         {
             GameObject selectedEnemyBase = GetRandomEnemyBase();
             GameObject selectedEnemyPrefab = GetRandomEnemyPrefab();
@@ -89,13 +62,10 @@ public class GameManagerGround : MonoBehaviour
             spawnEnemyCounts++;
             yield return new WaitForSeconds(spawnInterval);
         }
-        // 敌人生成达到上限，暂停游戏并询问是否进入下一关
-        ChangetoUnderGround();
     }
 
     void ChangetoUnderGround()
     {
-        PauseGame();
         if(ShareValues.UGSceneEntryCounts == 0){
             SceneManager.LoadSceneAsync(5);
         }
@@ -130,14 +100,6 @@ public class GameManagerGround : MonoBehaviour
 
     }
 
-    void UpdateTimerUI()
-    {
-        // 将时间格式化为分和秒，并更新UI文本
-        int minutes = Mathf.FloorToInt(timeRemaining / 60);
-        int seconds = Mathf.FloorToInt(timeRemaining % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
-
     public void PauseGame()
     {
         StopCoroutine(SpawnEnemies());
@@ -153,9 +115,10 @@ public class GameManagerGround : MonoBehaviour
 
     public void GameOver()
     {
-        //isStop = true;
-        //StopCoroutine(SpawnEnemies());
+        isStop = true;
+        StopCoroutine(SpawnEnemies());
         Debug.Log("GameOver");
+        ShareValues.ResetValues();
         SceneManager.LoadSceneAsync(4);
     }
 
