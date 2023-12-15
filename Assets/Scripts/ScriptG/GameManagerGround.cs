@@ -11,7 +11,7 @@ public class GameManagerGround : MonoBehaviour
     public float initialMinutes = 2f; // 初始分鐘
     public float initialSeconds = 0f; // 初始秒數
 
-    private int EnemyCounts = 5;
+    private int EnemyCounts;
     private int spawnEnemyCounts = 0;
     private float totalSeconds;
     private float timeRemaining;
@@ -23,10 +23,10 @@ public class GameManagerGround : MonoBehaviour
     {
         totalSeconds = initialMinutes * 60 + initialSeconds; // 将初始时间转换为总秒数
         timeRemaining = totalSeconds;
-        currentGameLevel = ShareValues.GameLevel;
-        StartCoroutine(SpawnEnemies());
+        currentGameLevel = ShareValues.UGSceneEntryCounts;
+        EnemyCounts += 10 * (currentGameLevel + 1);
         isStop = false;
-
+        StartCoroutine(SpawnEnemies());
     }
 
     void Update()
@@ -90,16 +90,13 @@ public class GameManagerGround : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
         // 敌人生成达到上限，暂停游戏并询问是否进入下一关
-        AskForNextLevel();
+        ChangetoUnderGround();
     }
 
-    void AskForNextLevel()
+    void ChangetoUnderGround()
     {
-        // 显示询问进入下一关的 UI 或执行其他逻辑
-        // 这里仅作为示例，你可能需要在你的游戏中使用自己的 UI 界面和逻辑
-        Debug.Log("Do you want to go to the next level?");
         PauseGame();
-        // 在这里你可以显示一个 UI，让玩家选择是否进入下一关
+        SceneManager.LoadSceneAsync(3);
     }
 
     GameObject GetRandomEnemyBase()
