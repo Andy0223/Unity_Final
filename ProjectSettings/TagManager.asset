@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Sign
   - Treasure
+  - Detect
   layers:
   - Default
   - TransparentFX

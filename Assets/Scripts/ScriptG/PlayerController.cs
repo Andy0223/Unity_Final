@@ -26,11 +26,11 @@ public class PlayerController : MonoBehaviour
 
     private List<SpriteRenderer> spriteRenderers;
     private Animator animator;
+    
 
     [SerializeField] private GameManagerGround gameManagerGround;
 
-    void Start()
-    {
+    void Start(){
         //ancestor1_remainCounts.enabled = false;
         // 預設選擇第一個祖先
         selectSprite = gameObject.AddComponent<SelectSprite>();
@@ -127,6 +127,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SpawnPrefab();
+            //辨識可不可以生成(GetCurrentLayer()有點問題...)
+            // int LayerNum=GetCurrentLayer()-1;
+            // if(!ShareValues.LayerDetect[LayerNum]){
+            //     ShareValues.LayerDetect[LayerNum]=true;
+            //     SpawnPrefab();
+            // }
+            // else{
+            //     Debug.Log("layer"+GetCurrentLayer()+"有祖先了!");
+            // }
         }
     }
 
@@ -246,7 +255,6 @@ public class PlayerController : MonoBehaviour
     {
         // 取得當前玩家的位置
         Vector2 currentPosition = rb.position;
-
         // 計算目標層的名稱
         string targetLayerName = "Ground " + (GetCurrentLayer() + layerOffset);
         Debug.Log(targetLayerName);
