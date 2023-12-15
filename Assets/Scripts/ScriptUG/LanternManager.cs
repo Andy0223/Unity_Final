@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class LanternManager : MonoBehaviour
 {
-    public GameObject[] lanterns;  // 保存所有燈的陣列
+    public GameObject[] openLanterns;
+    public GameObject[] closeLanterns;
     private int currentLanternIndex = 0;
 
     void Start()
@@ -19,7 +20,7 @@ public class LanternManager : MonoBehaviour
     void TurnOffAllLanterns()
     {
         // 關閉所有燈
-        foreach (GameObject lantern in lanterns)
+        foreach (GameObject lantern in openLanterns)
         {
             lantern.SetActive(false);
         }
@@ -29,7 +30,7 @@ public class LanternManager : MonoBehaviour
     {
         // 找到符合名字的燈籠
         GameObject lanternToTurnOn = null;
-        foreach (GameObject lantern in lanterns)
+        foreach (GameObject lantern in openLanterns)
         {
             if (lantern.name == lanternName)
             {
@@ -45,19 +46,17 @@ public class LanternManager : MonoBehaviour
 
             // 更新 shareValues.UGplayerPosition
             ShareValues.UGplayerPosition = lanternPosition;
-            // 關閉當前燈
-            // lanterns[currentLanternIndex].SetActive(false);
-            //Debug.Log("關閉");
 
             // 更新當前燈籠索引
-            currentLanternIndex = System.Array.IndexOf(lanterns, lanternToTurnOn);
+            currentLanternIndex = System.Array.IndexOf(openLanterns, lanternToTurnOn);
             Debug.Log("更新");
 
             // 開啟指定的燈籠以及之前的所有燈籠
             for (int i = 0; i <= currentLanternIndex; i++)
             {
-                Debug.Log("lanterns[i]");
-                lanterns[i].SetActive(true);
+                Debug.Log("openLanterns[i]");
+                openLanterns[i].SetActive(true);
+                closeLanterns[i].SetActive(true);
             }
         }
         else

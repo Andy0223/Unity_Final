@@ -27,13 +27,16 @@ public class ShareValues : MonoBehaviour
     // start from level 0
     public static int GameLevel = 0;
 
+    //Ground各個layer有沒有祖先
+    public static List<bool> LayerDetect = new List<bool>() { false, false, false };
+
     //UG_Trolly
     public static bool treasure_1=true;
     public static bool treasure_2=true;
     public static bool treasure_3=true;
     //UG_PlayerPosition
     // 儲存玩家初始位置的變數
-    public static Vector3 UGplayerPosition = new Vector3(0, -2, 0);
+    public static Vector3 UGplayerPosition = new Vector3(0, 2.4f, 0);
     
     //重整數值
     public static void ResetValues()
