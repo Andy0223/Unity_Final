@@ -8,6 +8,7 @@ public class TrolleyManager : MonoBehaviour
     [SerializeField] private GameObject Story1;
     [SerializeField] private GameObject Story2;
     [SerializeField] private GameObject Story3;
+    [SerializeField] private GameObject button;
     public GameObject[] trolleyes;
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class TrolleyManager : MonoBehaviour
             ShareValues.ancestor1_counts +=2;
             //故事1
             Story1.SetActive(true);
+            button.SetActive(true);
             //遊戲勝利
             gameManager.SetWin();
         }
@@ -39,6 +41,7 @@ public class TrolleyManager : MonoBehaviour
             ShareValues.ancestor1_counts +=2;
             //故事2
             Story2.SetActive(true);
+            button.SetActive(true);
             //遊戲勝利
             gameManager.SetWin();
         }
@@ -49,6 +52,7 @@ public class TrolleyManager : MonoBehaviour
             ShareValues.ancestor1_counts +=2;
             //故事3
             Story3.SetActive(true);
+            button.SetActive(true);
             //遊戲勝利
             gameManager.SetWin();
         }

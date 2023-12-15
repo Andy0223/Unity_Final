@@ -96,7 +96,12 @@ public class GameManagerGround : MonoBehaviour
     void ChangetoUnderGround()
     {
         PauseGame();
-        SceneManager.LoadSceneAsync(3);
+        if(ShareValues.UGSceneEntryCounts == 0){
+            SceneManager.LoadSceneAsync(5);
+        }
+        else{
+            SceneManager.LoadSceneAsync(6);
+        }
     }
 
     GameObject GetRandomEnemyBase()
