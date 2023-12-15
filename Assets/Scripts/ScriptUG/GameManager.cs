@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
     private float timer = 0f;
     public bool IsGameOver;
     [SerializeField] private GameObject LossPop;
-    [SerializeField] private GameObject WinPop;
     [SerializeField] private GameObject Story1;
     [SerializeField] private GameObject Story2;
     [SerializeField] private GameObject Story3;
@@ -39,21 +38,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timeForHealth;
     public HealthController healthController; // 引用 HealthController
     public bool isStop = false;
-    public GameObject[] trolleyes;
+    public GameObject[] treasures;
 
     void Start(){
         IsGameOver = false;
         HealthController.HealCurrent=100;
         isStop = false;
         ShareValues.UGSceneEntryCounts+=1;
-        if(ShareValues.trolley_1==false){
-            trolleyes[0].SetActive(false);
+        if(ShareValues.treasure_1==false){
+            treasures[0].SetActive(false);
         }
-        if(ShareValues.trolley_2==false){
-            trolleyes[1].SetActive(false);
+        if(ShareValues.treasure_2==false){
+            treasures[1].SetActive(false);
         }
-        if(ShareValues.trolley_3==false){
-            trolleyes[2].SetActive(false);
+        if(ShareValues.treasure_3==false){
+            treasures[2].SetActive(false);
         }
     }
 
@@ -84,7 +83,7 @@ public class GameManager : MonoBehaviour
         }
         //偵測血量
         if (HealthController.HealCurrent <= 0){
-            SetGameOver();
+            GameOver();
         }
         //重新開始
         //按下R重新開始
@@ -95,19 +94,26 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
-    public void SetGameOver(){
-        //ex馬力歐一樣往下掉
-
-        //遊戲結束
+    
+    //遊戲結束
+    public void GameOver(){
         IsGameOver = true;
-        LossPop.SetActive(true);
-        SceneManager.LoadSceneAsync(4);
         
+        //全都沒打開:unfind(因為時間結束或機關觸發死的)
+        if(ShareValues.treasure_1 && ShareValues.treasure_2 && ShareValues.treasure_3){
+            SceneManager.LoadSceneAsync(8);
+        }
     }
-    public void SetWin(){
-        //遊戲結束
-        IsGameOver = true;
+    //碰到寶箱後，觸發故事卡並按下button後
+    public void ButtonClick(){
+        //全都打開:All
+        if(!ShareValues.treasure_1 && !ShareValues.treasure_2 && !ShareValues.treasure_3){
+            SceneManager.LoadSceneAsync(10);
+        }
+        //打開一個:1
+        else{
+            SceneManager.LoadSceneAsync(9);
+        }
     }
 
     public void SetlanternOn(){
@@ -116,10 +122,7 @@ public class GameManager : MonoBehaviour
     }
     public void PauseGame()
     {
-        //StopCoroutine(SpawnEnemies());
         isStop = true;
-        // Time.timeScale = 0f;  // 设置时间流逝速度为0，即暂停
-        
         Debug.Log("Game Paused");
     }
 
@@ -128,9 +131,5 @@ public class GameManager : MonoBehaviour
         isStop = false;
         // Time.timeScale = 1f;  // 恢复正常的时间流逝速度
         Debug.Log("Game Resumed");
-    }
-
-    public void Trolley(){
-
     }
 }

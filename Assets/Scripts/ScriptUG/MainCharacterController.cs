@@ -14,8 +14,8 @@ public class MainCharacterController : MonoBehaviour
     private Animator animator;
     public HealthController healthController;
     public LanternManager lanternManager;
-    public TrolleyManager trolleyManager;
-
+    public TreasureManager treasureManager;
+    public AudioSource backgroundMusic;
     void Start()
     {
         transform.position = ShareValues.UGplayerPosition;
@@ -102,14 +102,13 @@ public class MainCharacterController : MonoBehaviour
             lanternManager.TurnOnLantern(newLanternName);
             
         }
-        if (other.CompareTag("Trolley"))
+        if (other.CompareTag("Treasure"))
         {
             other.gameObject.GetComponent<AudioSource>().Play();
-            
+            backgroundMusic.Stop();
             // 獲取目前的寶箱名字
-            string trolleyName = other.gameObject.name;
-            // gameManager.SetWin();
-            trolleyManager.CloseTrolley(trolleyName);
+            string treasureName = other.gameObject.name;
+            treasureManager.CloseTreasure(treasureName);
         }
     }
     // 取得字串的最末數字

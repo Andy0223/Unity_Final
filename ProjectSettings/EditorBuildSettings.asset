@@ -29,4 +29,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Over.unity
     guid: 52b82a56ccf2446678c47163f89d0447
+  - enabled: 1
+    path: Assets/Scenes/Unfind_treasure.unity
+    guid: 72495b65064164597aaa8a49118f3f74
+  - enabled: 1
+    path: Assets/Scenes/Find_treasure.unity
+    guid: 189009a9d3f3546d385ad90ce585ffde
+  - enabled: 1
+    path: Assets/Scenes/Find_treasure3.unity
+    guid: 537589533eb534c36880bb085c39b455
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: 7d95ee87d62e048bf9ff45411d5a6a8e
   m_configObjects: {}

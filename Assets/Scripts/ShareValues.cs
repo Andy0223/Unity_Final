@@ -28,13 +28,14 @@ public class ShareValues : MonoBehaviour
     public static int GameLevel = 0;
 
     //UG_Trolly
-    public static bool trolley_1=true;
-    public static bool trolley_2=true;
-    public static bool trolley_3=true;
+    public static bool treasure_1=true;
+    public static bool treasure_2=true;
+    public static bool treasure_3=true;
     //UG_PlayerPosition
     // 儲存玩家初始位置的變數
     public static Vector3 UGplayerPosition = new Vector3(0, -2, 0);
-
+    
+    //重整數值
     public static void ResetValues()
     {
         ancestor1_counts = 2;
@@ -56,9 +57,9 @@ public class ShareValues : MonoBehaviour
 
         GameLevel = 0;
 
-        trolley_1 = true;
-        trolley_2 = true;
-        trolley_3 = true;
+        treasure_1 = true;
+        treasure_2 = true;
+        treasure_3 = true;
 
         UGplayerPosition = new Vector3(0, -2, 0);
     }
