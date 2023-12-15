@@ -12,6 +12,7 @@ public class Scene_change : MonoBehaviour
     // ch1_fail:4
     // ch1_win_first:5
     // ch1_win_two:6
+    // end:7
 
     public void Menu(){
         SceneManager.LoadSceneAsync(0);
@@ -29,7 +30,9 @@ public class Scene_change : MonoBehaviour
         SceneManager.LoadSceneAsync(3);
     }
 
-
+    public void OverGame(){
+        SceneManager.LoadSceneAsync(7);
+    }
 
 
 }
