@@ -28,22 +28,19 @@ public class GameManager : MonoBehaviour
     public Text timerText;
     public Text healthText;
     private float timer = 0f;
-    public bool IsGameOver;
-    [SerializeField] private GameObject LossPop;
+    public bool isGameOver = false;
+    public bool isStop = false;
     [SerializeField] private GameObject Story1;
     [SerializeField] private GameObject Story2;
     [SerializeField] private GameObject Story3;
     [SerializeField] private GameObject house_lantern_off;
     [SerializeField] private GameObject house_lantern_on;
     [SerializeField] private float timeForHealth;
-    public HealthController healthController; // 引用 HealthController
-    public bool isStop = false;
+    public HealthController healthController;
     public GameObject[] treasures;
 
     void Start(){
-        IsGameOver = false;
         HealthController.HealCurrent=100;
-        isStop = false;
         ShareValues.UGSceneEntryCounts+=1;
         if(ShareValues.treasure_1==false){
             treasures[0].SetActive(false);
@@ -54,11 +51,12 @@ public class GameManager : MonoBehaviour
         if(ShareValues.treasure_3==false){
             treasures[2].SetActive(false);
         }
+        
     }
 
     void Update()
     {
-        if (IsGameOver || isStop)
+        if (isGameOver || isStop)
         {
             Time.timeScale = 0f;  // 暫停遊戲
         }
@@ -85,19 +83,12 @@ public class GameManager : MonoBehaviour
         if (HealthController.HealCurrent <= 0){
             GameOver();
         }
-        //重新開始
-        //按下R重新開始
-        if (IsGameOver && Input.GetKeyDown(KeyCode.R))
-        {
-            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            SceneManager.LoadScene("Ground");  
-        }
 
     }
     
     //遊戲結束
     public void GameOver(){
-        IsGameOver = true;
+        isGameOver = true;
         
         //全都沒打開:unfind(因為時間結束或機關觸發死的)
         if(ShareValues.treasure_1 && ShareValues.treasure_2 && ShareValues.treasure_3){
@@ -129,7 +120,6 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         isStop = false;
-        // Time.timeScale = 1f;  // 恢复正常的时间流逝速度
         Debug.Log("Game Resumed");
     }
 }

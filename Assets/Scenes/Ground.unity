@@ -1075,7 +1075,7 @@ GameObject:
   - component: {fileID: 481637206}
   - component: {fileID: 481637207}
   m_Layer: 0
-  m_Name: Ground3_detect
+  m_Name: Detect_Ground3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
