@@ -26,6 +26,9 @@ public class MainCharacterController : MonoBehaviour
 
     void Update()
     {
+        if(gameManager.isGameOver){
+            rb.velocity = new Vector2(rb.velocity.x, 5f);
+        }
         // 跳
         if (Input.GetKeyDown(KeyCode.W) && (isGrounded) && !(gameManager.isStop) )
         {
@@ -63,6 +66,7 @@ public class MainCharacterController : MonoBehaviour
         // 這可以是一個短暫的動畫或移動的行為
         // 例如：transform.Translate(Vector3.forward * rollDistance);
     }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
