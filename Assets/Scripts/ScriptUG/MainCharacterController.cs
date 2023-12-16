@@ -141,7 +141,6 @@ public class MainCharacterController : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        Debug.Log("uppGround");
         // 離開地面
         if (collision.gameObject.CompareTag("Ground"))
         {
