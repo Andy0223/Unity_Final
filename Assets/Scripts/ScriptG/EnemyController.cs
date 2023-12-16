@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ancestor"))
         {
             Debug.Log("Collision with: " + collision.gameObject.name);
+            animator.SetTrigger("hurt");
             HandleCollision();
         }
 
