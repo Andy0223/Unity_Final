@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadSceneAsync(8);
         }
     }
-    //碰到寶箱後，觸發故事卡並按下button後
+    //碰到寶箱後，觸發故事卡並按下button
     public void ButtonClick(){
         //全都打開:All
         if(!ShareValues.treasure_1 && !ShareValues.treasure_2 && !ShareValues.treasure_3){
