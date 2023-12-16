@@ -6066,8 +6066,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.84220004, y: 2.0009499, z: 0}
-    m_Extent: {x: 2.7718, y: 2.78655, z: 0}
+    m_Center: {x: 0.83795005, y: 2.00355, z: 0}
+    m_Extent: {x: 2.78555, y: 2.7825499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -8588,7 +8588,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1884486301}
+      - m_Target: {fileID: 801474562}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -9734,7 +9734,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1122929136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11493,8 +11493,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.91555, y: 2.0046499, z: 0}
-    m_Extent: {x: 2.69385, y: 2.77965, z: 0}
+    m_Center: {x: 0.91915, y: 2.00275, z: 0}
+    m_Extent: {x: 2.6982498, y: 2.77955, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -12258,7 +12258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1393875362
 MonoBehaviour:
   m_ObjectHideFlags: 0
