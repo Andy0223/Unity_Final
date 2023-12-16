@@ -89,7 +89,6 @@ public class GameManager : MonoBehaviour
     //遊戲結束
     public void GameOver(){
         isGameOver = true;
-        
         //全都沒打開:unfind(因為時間結束或機關觸發死的)
         if(ShareValues.treasure_1 && ShareValues.treasure_2 && ShareValues.treasure_3){
             SceneManager.LoadSceneAsync(8);

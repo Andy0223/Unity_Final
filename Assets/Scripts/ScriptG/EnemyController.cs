@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ancestor"))
         {
             Debug.Log("Collision with: " + collision.gameObject.name);
+            animator.SetTrigger("hurt");
             HandleCollision();
         }
 
@@ -67,6 +68,7 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator BounceAndResume()
     {
+        
         // 停止当前运动
         rb.velocity = Vector2.zero;
 

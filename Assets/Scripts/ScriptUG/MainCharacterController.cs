@@ -26,9 +26,9 @@ public class MainCharacterController : MonoBehaviour
 
     void Update()
     {
-        if(gameManager.isGameOver){
-            rb.velocity = new Vector2(rb.velocity.x, 5f);
-        }
+        //if(gameManager.isGameOver){
+        //    rb.velocity = new Vector2(rb.velocity.x, 5f);
+        //}
         // 跳
         if (Input.GetKeyDown(KeyCode.W) && (isGrounded) && !(gameManager.isStop) )
         {
@@ -104,7 +104,7 @@ public class MainCharacterController : MonoBehaviour
             // 在燈籠名字後面加上 'on' 以及最末數字
             string newLanternName = "on" + GetLastDigit(lanternName);
             lanternManager.TurnOnLantern(newLanternName);
-            
+            other.gameObject.GetComponent<AudioSource>().Play();
         }
         if (other.CompareTag("Treasure"))
         {
