@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadSceneAsync(8);
         }
     }
-    //碰到寶箱後，觸發故事卡並按下button後
+    //碰到寶箱後，觸發故事卡並按下button
     public void ButtonClick(){
         //全都打開:All
         if(!ShareValues.treasure_1 && !ShareValues.treasure_2 && !ShareValues.treasure_3){
@@ -106,7 +106,6 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadSceneAsync(9);
         }
     }
-
     public void SetlanternOn(){
         house_lantern_off.SetActive(false);
         house_lantern_on.SetActive(true);
@@ -116,7 +115,6 @@ public class GameManager : MonoBehaviour
         isStop = true;
         Debug.Log("Game Paused");
     }
-
     public void ResumeGame()
     {
         isStop = false;
