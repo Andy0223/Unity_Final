@@ -32,8 +32,8 @@ public class GameManagerGround : MonoBehaviour
 
     void Update()
     {
-        
-        
+        TotalEnemyText.text = "Total Enemy: " + (ShareValues.EnemyCounts- EnemyDestroyCounts);
+
         if (isStop)
         {
             Time.timeScale = 0f;  // 暫停遊戲
@@ -46,7 +46,11 @@ public class GameManagerGround : MonoBehaviour
 
         if (EnemyDestroyCounts == ShareValues.EnemyCounts)
         {
-            // 要做判斷是不是最後一關 Scene8
+            // 判斷是不是最後一關 Scene8
+            if (ShareValues.treasure_1 == false && ShareValues.treasure_2 == false && ShareValues.treasure_3 == false)
+            {
+                SceneManager.LoadSceneAsync(8);
+            }
             ChangetoUnderGround();
         }
     }

@@ -22,12 +22,12 @@ public class PlayerController : MonoBehaviour
     public Text ancestor4_remainCounts;
     public Text ancestor5_remainCounts;
     public Text ancestor6_remainCounts;
-    private List<Text> ancestors_remainCounts;
+    public Dictionary<int, bool> ancestorOnLayers = new Dictionary<int, bool>();
 
+    private List<Text> ancestors_remainCounts;
     private List<SpriteRenderer> spriteRenderers;
     private Animator animator;
     
-
     [SerializeField] private GameManagerGround gameManagerGround;
 
     void Start(){
@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         // 添加 SelectSprite 腳本並設置參考
         animator = gameObject.GetComponent<Animator>();
+        ancestorOnLayers.Add(1, false);
+        ancestorOnLayers.Add(2, false);
+        ancestorOnLayers.Add(3, false);
     }
 
     void Update()
@@ -126,16 +129,14 @@ public class PlayerController : MonoBehaviour
         // 按下空白鍵生成Prefab
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnPrefab();
-            //辨識可不可以生成(GetCurrentLayer()有點問題...)
-            // int LayerNum=GetCurrentLayer()-1;
-            // if(!ShareValues.LayerDetect[LayerNum]){
-            //     ShareValues.LayerDetect[LayerNum]=true;
-            //     SpawnPrefab();
-            // }
-            // else{
-            //     Debug.Log("layer"+GetCurrentLayer()+"有祖先了!");
-            // }
+            if (ancestorOnLayers[GetCurrentLayer()])
+            {
+                Debug.Log("Cannot spawn ancestor while there is one on the Ground");
+            }
+            else
+            {
+                SpawnPrefab();
+            }
         }
     }
 
@@ -169,6 +170,7 @@ public class PlayerController : MonoBehaviour
                             // 根據現在的位置生成Prefab，你可以根據需要更改位置
                             Instantiate(prefab, ancestorSpawnPosition, Quaternion.identity);
                             ShareValues.ancestor1_counts--;
+                            ancestorOnLayers[GetCurrentLayer()] = true;
                         }
                         else
                         {
@@ -181,6 +183,7 @@ public class PlayerController : MonoBehaviour
                             // 根據現在的位置生成Prefab，你可以根據需要更改位置
                             Instantiate(prefab, ancestorSpawnPosition, Quaternion.identity);
                             ShareValues.ancestor2_counts--;
+                            ancestorOnLayers[GetCurrentLayer()] = true;
                         }
                         else
                         {
@@ -193,6 +196,7 @@ public class PlayerController : MonoBehaviour
                             // 根據現在的位置生成Prefab，你可以根據需要更改位置
                             Instantiate(prefab, ancestorSpawnPosition, Quaternion.identity);
                             ShareValues.ancestor3_counts--;
+                            ancestorOnLayers[GetCurrentLayer()] = true;
                         }
                         else
                         {
@@ -205,6 +209,7 @@ public class PlayerController : MonoBehaviour
                             // 根據現在的位置生成Prefab，你可以根據需要更改位置
                             Instantiate(prefab, ancestorSpawnPosition, Quaternion.identity);
                             ShareValues.ancestor4_counts--;
+                            ancestorOnLayers[GetCurrentLayer()] = true;
                         }
                         else
                         {
@@ -217,6 +222,7 @@ public class PlayerController : MonoBehaviour
                             // 根據現在的位置生成Prefab，你可以根據需要更改位置
                             Instantiate(prefab, ancestorSpawnPosition, Quaternion.identity);
                             ShareValues.ancestor5_counts--;
+                            ancestorOnLayers[GetCurrentLayer()] = true;
                         }
                         else
                         {
@@ -229,6 +235,7 @@ public class PlayerController : MonoBehaviour
                             // 根據現在的位置生成Prefab，你可以根據需要更改位置
                             Instantiate(prefab, ancestorSpawnPosition, Quaternion.identity);
                             ShareValues.ancestor6_counts--;
+                            ancestorOnLayers[GetCurrentLayer()] = true;
                         }
                         else
                         {
@@ -280,7 +287,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    int GetCurrentLayer()
+    public int GetCurrentLayer()
     {
         // 這個示例假設地面物體有命名為 "Ground1"、"Ground2"、"Ground3" 等等
         // 這樣可以通過解析物體名稱來獲取當前所在的地面層級

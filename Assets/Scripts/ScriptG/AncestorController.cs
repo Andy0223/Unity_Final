@@ -9,6 +9,8 @@ public class AncestorController : MonoBehaviour
     private int collisionCount = 0;
     private int maxCollisionCount = 5;
     private Rigidbody2D rb;
+    private PlayerController playerController;
+    public int layerBelonging;
 
     // 取得 SpriteRenderer
     private SpriteRenderer spriteRenderer;
@@ -24,6 +26,14 @@ public class AncestorController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         rb = GetComponent<Rigidbody2D>();
+
+        // Find the PlayerController GameObject
+        GameObject playerControllerObject = GameObject.Find("Player");
+        playerController = playerControllerObject.GetComponent<PlayerController>();
+
+        layerBelonging = playerController.GetCurrentLayer();
+        Debug.Log("layerBelonging: " + layerBelonging);
+
     }
 
     // Update is called once per frame
@@ -31,9 +41,10 @@ public class AncestorController : MonoBehaviour
     {
         transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
 
-        if (transform.position.x == maxRightXPosition)
+        if (transform.position.x >= maxRightXPosition)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
+            playerController.ancestorOnLayers[layerBelonging] = false;
         }
     }
 
@@ -44,33 +55,6 @@ public class AncestorController : MonoBehaviour
             Debug.Log("Collision with: " + collision.gameObject.name);
             HandleCollision();
         }
-
-        if (collision.gameObject.CompareTag("Sign"))
-        {
-            Debug.Log("Collision with: " + collision.gameObject.name);
-            // 獲取另一個物體的 Collider 和 Rigidbody
-            Collider2D otherCollider = collision.gameObject.GetComponent<Collider2D>();
-
-            // 確認物體是否有 Collider 和 Rigidbody
-            if (otherCollider != null)
-            {
-                // 將 Collider 和 Rigidbody 設為 disabled
-                otherCollider.enabled = false;
-
-
-                // 一段時間後，將 Collider 和 Rigidbody 再次設回 disabled
-                StartCoroutine(DisableColliderAndRigidbody(otherCollider, 2f)); // 假設 2 秒後設回 disabled
-            }
-        }
-    }
-
-    // 協程：延遲一段時間後將 Collider 和 Rigidbody 設回 disabled
-    private IEnumerator DisableColliderAndRigidbody(Collider2D collider, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        // 將 Collider 和 Rigidbody 設回 abled
-        collider.enabled = true;
     }
 
     private void HandleCollision()
@@ -78,6 +62,7 @@ public class AncestorController : MonoBehaviour
         if (collisionCount == maxCollisionCount)
         {
             Destroy(gameObject);
+            playerController.ancestorOnLayers[layerBelonging] = false;
         }
         else
         {
@@ -97,7 +82,7 @@ public class AncestorController : MonoBehaviour
         rb.AddForce(new Vector2(-5f, 3f), ForceMode2D.Impulse);
 
         // 等待一段時間，你可以根据需要调整这个时间
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         // 等待直到 Enemy 回到原本的 y 位置
         while (transform.position.y > initialPosition.y)
@@ -107,8 +92,5 @@ public class AncestorController : MonoBehaviour
 
             yield return null;
         }
-
-        // 恢复正常运动
-        rb.velocity = new Vector2(movementSpeed, 0f);
     }
 }
