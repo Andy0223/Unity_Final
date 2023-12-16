@@ -30,6 +30,11 @@ public class MainCharacterController : MonoBehaviour
         //    rb.velocity = new Vector2(rb.velocity.x, 5f);
         //}
         // 跳
+        if (isGrounded &&ShareValues.UGSceneEntryCounts==0)
+        {
+            Debug.Log("000");
+            gameManager.PauseGame();
+        }
         if (Input.GetKeyDown(KeyCode.W) && (isGrounded) && !(gameManager.isStop) )
         {
             Debug.LogWarning("Jumping!");
@@ -136,6 +141,7 @@ public class MainCharacterController : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
+        Debug.Log("uppGround");
         // 離開地面
         if (collision.gameObject.CompareTag("Ground"))
         {

@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject Story1;
     [SerializeField] private GameObject Story2;
     [SerializeField] private GameObject Story3;
-    // [SerializeField] private GameObject TeachBox;
+    [SerializeField] private GameObject TeachBox;
     [SerializeField] private GameObject house_lantern_off;
     [SerializeField] private GameObject house_lantern_on;
     [SerializeField] private float timeForHealth;
@@ -41,11 +41,10 @@ public class GameManager : MonoBehaviour
     public GameObject[] treasures;
 
     void Start(){
-        HealthController.HealCurrent=100;
-        if(ShareValues.UGSceneEntryCounts==0){
-            // TeachBox.SetActive(true);
+        if(ShareValues.UGSceneEntryCounts!=0){
+            ShareValues.UGSceneEntryCounts+=1;
         }
-        ShareValues.UGSceneEntryCounts+=1;
+        HealthController.HealCurrent=100;
         if(ShareValues.treasure_1==false){
             treasures[0].SetActive(false);
         }
@@ -117,6 +116,10 @@ public class GameManager : MonoBehaviour
     {
         isStop = true;
         Debug.Log("Game Paused");
+        if(ShareValues.UGSceneEntryCounts==0){
+            TeachBox.SetActive(true);
+            ShareValues.UGSceneEntryCounts+=1;
+        }
     }
     public void ResumeGame()
     {
