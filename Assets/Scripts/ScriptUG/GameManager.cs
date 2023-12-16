@@ -106,7 +106,6 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadSceneAsync(9);
         }
     }
-
     public void SetlanternOn(){
         house_lantern_off.SetActive(false);
         house_lantern_on.SetActive(true);
@@ -116,7 +115,6 @@ public class GameManager : MonoBehaviour
         isStop = true;
         Debug.Log("Game Paused");
     }
-
     public void ResumeGame()
     {
         isStop = false;
