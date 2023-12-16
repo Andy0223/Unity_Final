@@ -36,7 +36,7 @@ public class ShareValues : MonoBehaviour
     public static bool treasure_3=true;
     //UG_PlayerPosition
     // 儲存玩家初始位置的變數
-    public static Vector3 UGplayerPosition = new Vector3(0, 2.4f, 0);
+    public static Vector3 UGplayerPosition = new Vector3(0, 2, 0);
     
     //重整數值
     public static void ResetValues()
@@ -64,7 +64,7 @@ public class ShareValues : MonoBehaviour
         treasure_2 = true;
         treasure_3 = true;
 
-        UGplayerPosition = new Vector3(0, -2, 0);
+        UGplayerPosition = new Vector3(0, 2, 0);
     }
 
 }
