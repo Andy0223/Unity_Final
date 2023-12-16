@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
         string enemyBaseName = "Enemy_base 1";
         GameObject selectedEnemyBase = GameObject.Find(enemyBaseName);
         stopXPosition = selectedEnemyBase.transform.position.x;
-        animator = GetComponent<Animator>();
+        animator = gameObject.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         gameManagerGround = GameObject.Find("GameManager").GetComponent<GameManagerGround>();
 
@@ -37,7 +37,6 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ancestor"))
         {
             Debug.Log("Collision with: " + collision.gameObject.name);
-            animator.SetTrigger("hurt");
             HandleCollision();
         }
 
