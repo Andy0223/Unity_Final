@@ -28,6 +28,7 @@ public class GameManagerGround : MonoBehaviour
         TotalEnemyText.text = "Total Enemy: " + ShareValues.EnemyCounts;
         isStop = false;
         StartCoroutine(SpawnEnemies());
+        PauseGame();
     }
 
     void Update()
