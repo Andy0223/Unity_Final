@@ -98,13 +98,13 @@ public class MainCharacterController : MonoBehaviour
     {
         if (other.CompareTag("Lantern"))
         {
+            other.gameObject.GetComponent<AudioSource>().Play();
             // 獲取目前的燈籠名字
             string lanternName = other.gameObject.name;
             
             // 在燈籠名字後面加上 'on' 以及最末數字
             string newLanternName = "on" + GetLastDigit(lanternName);
             lanternManager.TurnOnLantern(newLanternName);
-            other.gameObject.GetComponent<AudioSource>().Play();
         }
         if (other.CompareTag("Treasure"))
         {
