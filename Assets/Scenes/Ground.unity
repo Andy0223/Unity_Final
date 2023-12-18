@@ -11822,14 +11822,14 @@ RectTransform:
   - {fileID: 384719329}
   - {fileID: 982821146}
   - {fileID: 571149532}
+  - {fileID: 355462559}
+  - {fileID: 1867344516}
   - {fileID: 1336930643}
   - {fileID: 1941960482}
   - {fileID: 1168817840}
   - {fileID: 629691453}
   - {fileID: 2085899927}
   - {fileID: 315404298}
-  - {fileID: 355462559}
-  - {fileID: 1867344516}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
