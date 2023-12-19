@@ -35,7 +35,7 @@ public class TreasureManager : MonoBehaviour
             button.SetActive(true);
             backGround.SetActive(true);
             //遊戲勝利
-            gameManager.GameOver();
+            gameManager.isGameOver = true;
         }
         else if(treasureName=="treasure2"){
             treasures[1].SetActive(false);
@@ -50,7 +50,7 @@ public class TreasureManager : MonoBehaviour
             button.SetActive(true);
             backGround.SetActive(true);
             //遊戲勝利
-            gameManager.GameOver();
+            gameManager.isGameOver = true;
         }
         else if(treasureName=="treasure3"){
             treasures[2].SetActive(false);
@@ -65,7 +65,7 @@ public class TreasureManager : MonoBehaviour
             button.SetActive(true);
             backGround.SetActive(true);
             //遊戲勝利
-            gameManager.GameOver();
+            gameManager.isGameOver = true;
         }
     }
 }
