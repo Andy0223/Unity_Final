@@ -13,6 +13,8 @@ public class GameManagerGround : MonoBehaviour
     public int EnemyDestroyCounts = 0;
     public Text LevelText;
     public Text TotalEnemyText;
+    public GameObject teachingBox;
+    public GameObject background;
 
     private int spawnEnemyCounts = 0;
     private int currentGameLevel;
@@ -28,7 +30,15 @@ public class GameManagerGround : MonoBehaviour
         TotalEnemyText.text = "Total Enemy: " + ShareValues.EnemyCounts;
         isStop = false;
         StartCoroutine(SpawnEnemies());
-        PauseGame();
+        if (currentGameLevel != 0)
+        {
+            teachingBox.SetActive(false);
+            background.SetActive(false);
+        }
+        else
+        {
+            PauseGame();
+        }
     }
 
     void Update()

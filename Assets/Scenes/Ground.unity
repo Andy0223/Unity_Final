@@ -642,6 +642,8 @@ MonoBehaviour:
   EnemyDestroyCounts: 0
   LevelText: {fileID: 355462560}
   TotalEnemyText: {fileID: 1867344517}
+  teachingBox: {fileID: 2085899926}
+  background: {fileID: 629691450}
   isStop: 0
 --- !u!4 &101481225
 Transform:
