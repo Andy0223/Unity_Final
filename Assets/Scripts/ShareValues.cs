@@ -34,6 +34,10 @@ public class ShareValues : MonoBehaviour
     public static bool treasure_1=true;
     public static bool treasure_2=true;
     public static bool treasure_3=true;
+
+    public static bool isTreasure1Found = false;
+    public static bool isTreasure2Found = false;
+    public static bool isTreasure3Found = false;
     //UG_PlayerPosition
     // 儲存玩家初始位置的變數
     public static Vector3 UGplayerPosition = new Vector3(0, 2, 0);
