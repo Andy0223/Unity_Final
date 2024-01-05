@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MainCharacterController : MonoBehaviour
 {
@@ -30,6 +31,10 @@ public class MainCharacterController : MonoBehaviour
         //    rb.velocity = new Vector2(rb.velocity.x, 5f);
         //}
         // 跳
+        if (Input.GetKeyDown(KeyCode.U) && (isGrounded) && !(gameManager.isStop))
+        {
+            SceneManager.LoadSceneAsync(2);
+        }
         if (isGrounded &&ShareValues.UGSceneEntryCounts==0)
         {
             Debug.Log("000");

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         HandleMovementInput();
         HandleSelectionInput();
         HandleSpawnInput();
+        HandleScene();
     }
 
     void HandleMovementInput()
@@ -79,6 +81,14 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.S) && !(gameManagerGround.isStop))
         {
             TeleportToLayer(-1);
+        }
+    }
+
+    void HandleScene()
+    {
+        if (Input.GetKeyDown(KeyCode.U) && !(gameManagerGround.isStop))
+        {
+            SceneManager.LoadSceneAsync(3);
         }
     }
 

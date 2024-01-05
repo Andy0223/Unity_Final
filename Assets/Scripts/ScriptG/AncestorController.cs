@@ -82,7 +82,7 @@ public class AncestorController : MonoBehaviour
         rb.AddForce(new Vector2(-5f, 3f), ForceMode2D.Impulse);
 
         // 等待一段時間，你可以根据需要调整这个时间
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         // 等待直到 Enemy 回到原本的 y 位置
         while (transform.position.y > initialPosition.y)

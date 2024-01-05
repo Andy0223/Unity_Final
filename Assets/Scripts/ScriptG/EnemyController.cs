@@ -90,8 +90,6 @@ public class EnemyController : MonoBehaviour
             yield return null;
         }
 
-        // 恢复正常运动
-        rb.velocity = new Vector2(movementSpeed, 0f);
     }
 
 }

@@ -37,5 +37,10 @@ public class Scene_change : MonoBehaviour
         SceneManager.LoadSceneAsync(7);
     }
 
+    public void EndGame()
+    {
+        SceneManager.LoadSceneAsync(11);
+    }
+
 
 }
