@@ -644,12 +644,6 @@ MonoBehaviour:
   TotalEnemyText: {fileID: 1867344517}
   teachingBox: {fileID: 2085899926}
   background: {fileID: 629691450}
-  ancestor1_addon: {fileID: 565918324}
-  ancestor2_addon: {fileID: 1516076401}
-  ancestor3_addon: {fileID: 578719696}
-  ancestor4_addon: {fileID: 1792114378}
-  ancestor5_addon: {fileID: 2010220938}
-  ancestor6_addon: {fileID: 1458947550}
   isStop: 0
 --- !u!4 &101481225
 Transform:

@@ -1066,7 +1066,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1435715576}
         m_TargetAssemblyTypeName: Scene_change, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: EndGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
